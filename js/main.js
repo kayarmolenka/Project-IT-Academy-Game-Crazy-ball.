@@ -1,37 +1,5 @@
-// let div;
-// function createDiv(classCss) {
-//     div = document.createElement('div');
-//     div.classList.add(classCss);
-// }
-
-// let o = createDiv('div');
 
 const root = document.querySelector('.root');
-
-// root.append(o)
-
-// let div = document.createElement('div');
-// div.classList.add('div');
-
-// root.appendChild(div)
-
-
-
-
-// function create () {
-// let div = document.createElement('div');
-// div.classList.add('div');
-// root.appendChild(div);
-// }
-
-// create();
-
-// let div = document.createElement('div');
-// div.classList.add('div');
-// root.appendChild(div);
-
-
-
 
 function createHeader () {
     let header = document.createElement('header');
@@ -44,7 +12,6 @@ function createHeader () {
 }
 
 createHeader();
-
 
 let container = document.createElement('div');
 container.classList.add('container');
@@ -66,9 +33,6 @@ createLink('Help', 'help');
 createLink('Log in', 'log_in');
 createLink('Start', 'start');
 
-
-
-
 function createModalLogin () {
     let div = document.createElement('div');
     div.classList.add('div');
@@ -82,7 +46,6 @@ function createModalLogin () {
     document.body.style.opacity = 0.8;
 }
 let btn = document.querySelector('#log_in');
-
 
 btn.addEventListener('click', (event) => {
     event.preventDefault();
