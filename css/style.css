@@ -21,30 +21,36 @@ body {
   font-style: normal;
 }
 
-body .header {
+body .root .header {
   color: #fff;
 }
 
-body .container {
+body .root .container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 400px;
+  height: 500px;
 }
 
-body .container .a {
+body .root .container .a {
   color: black;
   text-decoration: none;
-  margin-right: 10px;
+  margin-bottom: 20px;
   border: 1px solid #fff;
   background-color: #fff;
   border-radius: 5px;
   padding: 10px 20px;
+  width: 300px;
+  text-align: center;
 }
 /*# sourceMappingURL=style.css.map */
