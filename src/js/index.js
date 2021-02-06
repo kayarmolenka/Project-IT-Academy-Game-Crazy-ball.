@@ -9,7 +9,7 @@ function createHeader () {
 
     header.classList.add('header');
     header.appendChild(h1);
-    h1.innerHTML = 'My programma very cool';
+    h1.innerHTML = 'My program very cool';
     root.appendChild(header);
 }
 
@@ -38,24 +38,3 @@ createLink('Record', 'record');
 createLink('Help', 'help');
 createLink('Log in', 'log_in');
 createLink('Start', 'start');
-
-// function createModalLogin () {
-//     let div = document.createElement('div');
-//     div.classList.add('div');
-//     container.appendChild(div);
-//     let span = document.createElement('span');
-//     span.classList.add('close');
-//     div.appendChild(span);
-//     let text = document.createTextNode('&times;');
-//     span.appendChild(text);
-//     document.body.style.overflow = 'hidden';
-//     document.body.style.opacity = 0.8;
-// }
-// let btn = document.querySelector('#log_in');
-
-// btn.addEventListener('click', (event) => {
-//     event.preventDefault();
-//     createModalLogin();
-// })
-
-

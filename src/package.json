@@ -1,0 +1,30 @@
+{
+  "name": "dom",
+  "version": "1.0.0",
+  "description": "project it-academy",
+  "main": "js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kayarmolenka/dom.git"
+  },
+  "keywords": [
+    "js",
+    "javaScript",
+    "webpack"
+  ],
+  "author": "kostia <kayarmolenka@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kayarmolenka/dom/issues"
+  },
+  "homepage": "https://github.com/kayarmolenka/dom#readme",
+  "devDependencies": {
+    "webpack": "^5.21.1",
+    "webpack-cli": "^4.5.0"
+  }
+}
