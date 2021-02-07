@@ -1,6 +1,6 @@
-'use strict';
+import callRegistrationWindow from './modal_Login.js';
 
-const root = document.querySelector('.root');
+export const root = document.querySelector('.root');
 let container;
 
 function createHeader () {
@@ -38,3 +38,12 @@ createLink('Record', 'record');
 createLink('Help', 'help');
 createLink('Log in', 'log_in');
 createLink('Start', 'start');
+
+
+
+const linkLogin = document.querySelector('#log_in');
+
+linkLogin.addEventListener('click', () => {
+    callRegistrationWindow();
+});
+

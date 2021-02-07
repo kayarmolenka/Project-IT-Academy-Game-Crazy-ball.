@@ -2,11 +2,10 @@
   "name": "dom",
   "version": "1.0.0",
   "description": "project it-academy",
-  "main": "js/index.js",
+  "private": true,
+  "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --mode development",
-    "build": "webpack --mode production"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -17,7 +16,7 @@
     "javaScript",
     "webpack"
   ],
-  "author": "kostia <kayarmolenka@gmail.com>",
+  "author": "kostia",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/kayarmolenka/dom/issues"
