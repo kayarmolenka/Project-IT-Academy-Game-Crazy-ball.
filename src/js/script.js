@@ -1,4 +1,7 @@
 import callRegistrationWindow from './modal_Login.js';
+import actionBtn from './validate.js';
+
+
 
 export const root = document.querySelector('.root');
 let container;
@@ -45,5 +48,6 @@ const linkLogin = document.querySelector('#log_in');
 
 linkLogin.addEventListener('click', () => {
     callRegistrationWindow();
+    actionBtn();
 });
 

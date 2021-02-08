@@ -1,5 +1,7 @@
 import {root} from './script.js';
 
+export let btn;
+
 function callRegistrationWindow() {
 
     const containerModal = document.createElement('div');
@@ -19,7 +21,7 @@ function callRegistrationWindow() {
     containerModal.append(header, form);
     
 
-    function createFormControl (nameInput, placehold) {
+    function createFormControl (nameInput, placehold, iconID, inputID, inputType) {
     let formControl = document.createElement('div'),
         label = document.createElement('label'),
         input = document.createElement('input'),
@@ -29,11 +31,14 @@ function callRegistrationWindow() {
         textSmall = document.createTextNode('Error message');
         
 
-    formControl.classList.add('formControl');
+    formControl.classList.add('form_control');
     label.setAttribute('for','username');
-    input.setAttribute('type','text');
+    input.setAttribute('type',inputType);
     input.setAttribute('placeholder',placehold);
     input.setAttribute('class','input');
+    input.setAttribute('id',inputID);
+    icon.setAttribute('class','fas fa-check-circle'); //fas fa-exclamation-circle
+    icon.setAttribute('id',iconID);
 
     form.appendChild(formControl);
     formControl.appendChild(label);
@@ -45,13 +50,14 @@ function callRegistrationWindow() {
 
     }
 
-    createFormControl('Username', 'nic08');
-    createFormControl('Email', 'kayarmolenka@gmail.com');
-    createFormControl('Password', '47hYnn&');
-    createFormControl('Password check','47hYnn&');
+    createFormControl('Username', 'nic08', 'form_modal_icon_1', 'input_1', 'text');
+    createFormControl('Email', 'kayarmolenka@gmail.com', 'form_modal_icon_2', 'input_2', 'email');
+    createFormControl('Password', '47hYnn&', 'form_modal_icon_3', 'input_3', 'password');
+    createFormControl('Password check','47hYnn&', 'form_modal_icon_4', 'input_4', 'password');
 
+    
     function createButton() {
-        const btn = document.createElement('button');
+        btn = document.createElement('button');
 
         form.append(btn);
         btn.insertAdjacentText('afterbegin','Sumbit');
@@ -60,6 +66,7 @@ function callRegistrationWindow() {
     createButton();
 
     root.append(containerModal);
+
 }
 
 export default callRegistrationWindow;

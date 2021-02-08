@@ -65,7 +65,6 @@ body .root .container .a {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  visibility: hidden;
 }
 
 .container_modal .header_modal_login {
@@ -83,17 +82,17 @@ body .root .container .a {
   margin: 0;
 }
 
-.container_modal .form_registration .formControl {
+.container_modal .form_registration .form_control {
   margin-bottom: 10px;
 }
 
-.container_modal .form_registration .formControl label {
+.container_modal .form_registration .form_control label {
   display: inline-block;
   margin-bottom: 5px;
   font-family: 'Open Sans', sans-serif;
 }
 
-.container_modal .form_registration .formControl .input {
+.container_modal .form_registration .form_control .input {
   border-radius: 5px;
   border: 2px solid #f0f0f0;
   padding: 10px;
@@ -103,13 +102,45 @@ body .root .container .a {
   font-family: 'Open Sans', sans-serif;
 }
 
-.container_modal .form_registration .formControl i {
-  content: "\f06a";
+.container_modal .form_registration .form_control .input_error {
+  border: 2px solid red;
 }
 
-.container_modal .form_registration .formControl small {
+.container_modal .form_registration .form_control #form_modal_icon_1 {
+  bottom: 30px;
+  right: 10px;
+}
+
+.container_modal .form_registration .form_control #form_modal_icon_2 {
+  bottom: 30px;
+  right: 10px;
+}
+
+.container_modal .form_registration .form_control #form_modal_icon_3 {
+  bottom: 30px;
+  right: 10px;
+}
+
+.container_modal .form_registration .form_control #form_modal_icon_4 {
+  bottom: 30px;
+  right: 10px;
+}
+
+.container_modal .form_registration .form_control i {
+  position: relative;
+  float: right;
+  visibility: hidden;
+}
+
+.container_modal .form_registration .form_control .i_super {
+  visibility: visible;
+  color: green;
+}
+
+.container_modal .form_registration .form_control small {
   color: red;
   font-family: 'Open Sans', sans-serif;
+  visibility: hidden;
 }
 
 button {
@@ -123,6 +154,12 @@ button {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   cursor: pointer;
+}
+
+.change_color_button {
+  background-color: blue;
+  border: 2px solid blue;
+  color: #fff;
 }
 
 .container_modal_visible {

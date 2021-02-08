@@ -10,10 +10,13 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "btn": () => (/* binding */ btn),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _script_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./script.js */ "./src/js/script.js");
 
+
+let btn;
 
 function callRegistrationWindow() {
 
@@ -34,7 +37,7 @@ function callRegistrationWindow() {
     containerModal.append(header, form);
     
 
-    function createFormControl (nameInput, placehold) {
+    function createFormControl (nameInput, placehold, iconID, inputID, inputType) {
     let formControl = document.createElement('div'),
         label = document.createElement('label'),
         input = document.createElement('input'),
@@ -44,11 +47,14 @@ function callRegistrationWindow() {
         textSmall = document.createTextNode('Error message');
         
 
-    formControl.classList.add('formControl');
+    formControl.classList.add('form_control');
     label.setAttribute('for','username');
-    input.setAttribute('type','text');
+    input.setAttribute('type',inputType);
     input.setAttribute('placeholder',placehold);
     input.setAttribute('class','input');
+    input.setAttribute('id',inputID);
+    icon.setAttribute('class','fas fa-check-circle'); //fas fa-exclamation-circle
+    icon.setAttribute('id',iconID);
 
     form.appendChild(formControl);
     formControl.appendChild(label);
@@ -60,13 +66,14 @@ function callRegistrationWindow() {
 
     }
 
-    createFormControl('Username', 'nic08');
-    createFormControl('Email', 'kayarmolenka@gmail.com');
-    createFormControl('Password', '47hYnn&');
-    createFormControl('Password check','47hYnn&');
+    createFormControl('Username', 'nic08', 'form_modal_icon_1', 'input_1', 'text');
+    createFormControl('Email', 'kayarmolenka@gmail.com', 'form_modal_icon_2', 'input_2', 'email');
+    createFormControl('Password', '47hYnn&', 'form_modal_icon_3', 'input_3', 'password');
+    createFormControl('Password check','47hYnn&', 'form_modal_icon_4', 'input_4', 'password');
 
+    
     function createButton() {
-        const btn = document.createElement('button');
+        btn = document.createElement('button');
 
         form.append(btn);
         btn.insertAdjacentText('afterbegin','Sumbit');
@@ -75,6 +82,7 @@ function callRegistrationWindow() {
     createButton();
 
     _script_js__WEBPACK_IMPORTED_MODULE_0__.root.append(containerModal);
+
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (callRegistrationWindow);
@@ -92,6 +100,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "root": () => (/* binding */ root)
 /* harmony export */ });
 /* harmony import */ var _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modal_Login.js */ "./src/js/modal_Login.js");
+/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./validate.js */ "./src/js/validate.js");
+
+
+
 
 
 const root = document.querySelector('.root');
@@ -139,8 +151,64 @@ const linkLogin = document.querySelector('#log_in');
 
 linkLogin.addEventListener('click', () => {
     (0,_modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.default)();
+    (0,_validate_js__WEBPACK_IMPORTED_MODULE_1__.default)();
 });
 
+
+
+/***/ }),
+
+/***/ "./src/js/validate.js":
+/*!****************************!*\
+  !*** ./src/js/validate.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modal_Login.js */ "./src/js/modal_Login.js");
+
+
+
+
+function actionBtn() {
+    _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.btn.addEventListener('mouseover', () => {
+        _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.btn.classList.add('change_color_button'); 
+    });
+
+    _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.btn.addEventListener('mouseout', () => {
+        _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.btn.classList.toggle('change_color_button');
+    });
+
+    _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        console.dir(e.path[1])
+        let o = e.path[1];
+        console.log(o.elements[0]);
+        console.log(o.elements[1]);
+        let i2 = o.elements[2];
+        let i3 = o.elements[3];
+
+        if(i2.value !== i3.value) {
+            i2.style.border = '2px solid red';
+            i3.style.border = '2px solid red';
+        } else {
+            i2.style.border = '2px solid green';
+            i3.style.border = '2px solid green';
+        } 
+    });
+
+}
+
+
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (actionBtn);
 
 
 /***/ })

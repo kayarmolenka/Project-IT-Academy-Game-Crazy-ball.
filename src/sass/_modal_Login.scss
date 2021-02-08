@@ -7,7 +7,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    visibility: hidden;
+    // visibility: hidden;
     .header_modal_login {
         padding: 20px 40px;
         h2 {
@@ -20,7 +20,7 @@
     .form_registration {
         padding: 0 40px 30px 40px;
         margin: 0;
-        .formControl {
+        .form_control {
             margin-bottom: 10px;
             // padding-bottom: 20px;
             label {
@@ -37,12 +37,38 @@
                 display: block;
                 font-family: 'Open Sans', sans-serif;
             }
+            .input_error {
+                border: 2px solid red;    
+            }
+            #form_modal_icon_1 {
+                bottom: 30px;
+                right: 10px;
+            }
+            #form_modal_icon_2 {
+                bottom: 30px;
+                right: 10px;
+            }
+            #form_modal_icon_3 {
+                bottom: 30px;
+                right: 10px;
+            }
+            #form_modal_icon_4 {
+                bottom: 30px;
+                right: 10px;
+            }
             i {
-                content: "\f06a";
+                position: relative;
+                float: right;
+                visibility: hidden;
+            }
+            .i_super {
+                visibility: visible;
+                color: green;
             }
             small {
                 color: red;
                 font-family: 'Open Sans', sans-serif;
+                visibility: hidden;
             }
         }
     }
@@ -61,6 +87,12 @@ button {
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     cursor: pointer;
+}
+
+.change_color_button {
+    background-color: blue;
+    border: 2px solid blue;
+    color: #fff;  
 }
 
 .container_modal_visible {
