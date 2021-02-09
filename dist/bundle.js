@@ -11,13 +11,14 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "btn": () => (/* binding */ btn),
+/* harmony export */   "form": () => (/* binding */ form),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _script_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./script.js */ "./src/js/script.js");
 
 
 let btn;
-
+let form;
 function callRegistrationWindow() {
 
     const containerModal = document.createElement('div');
@@ -25,10 +26,12 @@ function callRegistrationWindow() {
     containerModal.classList.add('container_modal');
 
     let header = document.createElement('div'),
-        h2 = document.createElement('h2'),
-        form = document.createElement('form');
-        
+        h2 = document.createElement('h2');
+    
+    form = document.createElement('form');
     form.classList.add('form_registration');
+    form.setAttribute('name', 'form_inputs');
+
     header.classList.add('header_modal_login');
 
     h2.textContent = 'Create Account';
@@ -46,7 +49,7 @@ function callRegistrationWindow() {
         small = document.createElement('small'),
         textSmall = document.createTextNode('Error message');
         
-
+        
     formControl.classList.add('form_control');
     label.setAttribute('for','username');
     input.setAttribute('type',inputType);
@@ -82,6 +85,9 @@ function callRegistrationWindow() {
     createButton();
 
     _script_js__WEBPACK_IMPORTED_MODULE_0__.root.append(containerModal);
+
+    document.body.classList.add('qqq');
+
 
 }
 
@@ -152,6 +158,7 @@ const linkLogin = document.querySelector('#log_in');
 linkLogin.addEventListener('click', () => {
     (0,_modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.default)();
     (0,_validate_js__WEBPACK_IMPORTED_MODULE_1__.default)();
+
 });
 
 
@@ -175,29 +182,53 @@ __webpack_require__.r(__webpack_exports__);
 
 function actionBtn() {
     _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.btn.addEventListener('mouseover', () => {
-        _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.btn.classList.add('change_color_button'); 
+        _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.btn.classList.add('change_color_button'); //change the style of the button
     });
 
     _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.btn.addEventListener('mouseout', () => {
-        _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.btn.classList.toggle('change_color_button');
+        _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.btn.classList.toggle('change_color_button'); //change the style of the button
     });
 
     _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.btn.addEventListener('click', (e) => {
         e.preventDefault();
+        console.dir(_modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.form)
+        const inputName = _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.form[0],
+              inputEmail = _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.form[1],
+              inputPas = _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.form[2],
+              inputPasRep = _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.form[3];
         
-        console.dir(e.path[1])
-        let o = e.path[1];
-        console.log(o.elements[0]);
-        console.log(o.elements[1]);
-        let i2 = o.elements[2];
-        let i3 = o.elements[3];
+        const i1 = _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.form.ownerDocument.all[62],
+              i2 = _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.form.ownerDocument.all[67],
+              i3 = _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.form.ownerDocument.all[72],
+              i4 = _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.form.ownerDocument.all[77],
+              s1 = _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.form.ownerDocument.all[63],
+              s2 = _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.form.ownerDocument.all[68],
+              s3 = _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.form.ownerDocument.all[73],
+              s4 = _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.form.ownerDocument.all[78];
 
-        if(i2.value !== i3.value) {
-            i2.style.border = '2px solid red';
-            i3.style.border = '2px solid red';
-        } else {
-            i2.style.border = '2px solid green';
-            i3.style.border = '2px solid green';
+        if(inputPas.value !== inputPasRep.value) {
+            inputPas.classList.add('input_error');
+            inputPasRep.classList.add('input_error');
+            i3.classList.remove('fas', 'fa-check-circle');
+            i3.classList.add('fas', 'fa-exclamation-circle', 'i_error');
+            i4.classList.remove('fas', 'fa-check-circle');
+            i4.classList.add('fas', 'fa-exclamation-circle', 'i_error');
+            s3.innerHTML = 'password is incorrect';
+            s3.classList.add('small_visible');
+            s4.classList.add('small_visible');
+        } else {                                           //change the style of the icon
+            inputPas.classList.add('input_success');
+            inputPasRep.classList.add('input_success');
+            i3.classList.add('i_super');
+            i4.classList.add('i_super');
+            s3.classList.remove('small_visible');
+            s4.classList.remove('small_visible');
+            i3.classList.add('fa-check-circle');
+            i3.classList.remove('fa-exclamation-circle', 'i_error');
+            i4.classList.add('fa-check-circle');
+            i4.classList.remove('fa-exclamation-circle', 'i_error');
+            _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.btn.style.background = 'green';
+            _modal_Login_js__WEBPACK_IMPORTED_MODULE_0__.btn.style.border = '1px solid green';
         } 
     });
 

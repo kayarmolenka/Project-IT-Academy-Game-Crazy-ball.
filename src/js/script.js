@@ -49,5 +49,6 @@ const linkLogin = document.querySelector('#log_in');
 linkLogin.addEventListener('click', () => {
     callRegistrationWindow();
     actionBtn();
+
 });
 

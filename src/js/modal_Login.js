@@ -1,7 +1,7 @@
 import {root} from './script.js';
 
 export let btn;
-
+export let form;
 function callRegistrationWindow() {
 
     const containerModal = document.createElement('div');
@@ -9,10 +9,12 @@ function callRegistrationWindow() {
     containerModal.classList.add('container_modal');
 
     let header = document.createElement('div'),
-        h2 = document.createElement('h2'),
-        form = document.createElement('form');
-        
+        h2 = document.createElement('h2');
+    
+    form = document.createElement('form');
     form.classList.add('form_registration');
+    form.setAttribute('name', 'form_inputs');
+
     header.classList.add('header_modal_login');
 
     h2.textContent = 'Create Account';
@@ -30,7 +32,7 @@ function callRegistrationWindow() {
         small = document.createElement('small'),
         textSmall = document.createTextNode('Error message');
         
-
+        
     formControl.classList.add('form_control');
     label.setAttribute('for','username');
     input.setAttribute('type',inputType);
@@ -66,6 +68,9 @@ function callRegistrationWindow() {
     createButton();
 
     root.append(containerModal);
+
+    document.body.classList.add('qqq');
+
 
 }
 

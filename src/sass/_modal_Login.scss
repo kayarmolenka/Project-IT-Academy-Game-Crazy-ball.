@@ -40,6 +40,9 @@
             .input_error {
                 border: 2px solid red;    
             }
+            .input_success {
+                border: 2px solid green;    
+            }
             #form_modal_icon_1 {
                 bottom: 30px;
                 right: 10px;
@@ -65,10 +68,17 @@
                 visibility: visible;
                 color: green;
             }
+            .i_error {
+                visibility: visible;
+                color: red;
+            }
             small {
                 color: red;
                 font-family: 'Open Sans', sans-serif;
                 visibility: hidden;
+            }
+            .small_visible {
+                visibility: visible;    
             }
         }
     }
@@ -95,7 +105,9 @@ button {
     color: #fff;  
 }
 
-.container_modal_visible {
-    visibility: visible;
-    transition: opacity 0.15s ease;
+.qqq {
+    
+    opacity: 0.7;
+    z-index: 30;
 }
+
