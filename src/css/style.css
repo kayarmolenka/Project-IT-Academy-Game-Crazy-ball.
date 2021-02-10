@@ -6,7 +6,7 @@
 }
 
 body {
-  background: url(../img/main_bg4.png) center center/cover no-repeat;
+  background: url(../img/main_bg5.jpg) center center/cover no-repeat;
   min-height: 100vh;
   font-family: 'Mystical Woods Smooth Script';
   font-weight: normal;
@@ -18,7 +18,9 @@ body .root {
 }
 
 body .root .header {
-  color: #fff;
+  color: black;
+  border-bottom: 2px solid black;
+  height: 50px;
 }
 
 body .root .container {
@@ -43,11 +45,13 @@ body .root .container .a {
   text-decoration: none;
   margin-bottom: 20px;
   border: 1px solid #fff;
-  background-color: #fff;
+  background-color: #b5ddf7;
   border-radius: 5px;
   padding: 10px 20px;
   width: 300px;
   text-align: center;
+  -webkit-box-shadow: 0 2px 5px rgba(103, 222, 243, 0.7);
+          box-shadow: 0 2px 5px rgba(103, 222, 243, 0.7);
 }
 
 @font-face {

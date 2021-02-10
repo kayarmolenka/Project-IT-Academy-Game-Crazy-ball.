@@ -7,12 +7,12 @@ export const root = document.querySelector('.root');
 let container;
 
 function createHeader () {
-    let header = document.createElement('header'),
-        h1 = document.createElement('h1');
+    let header = document.createElement('header');
+        // h1 = document.createElement('h1');
 
     header.classList.add('header');
-    header.appendChild(h1);
-    h1.innerHTML = 'My program very cool';
+    // header.appendChild(h1);
+    // h1.innerHTML = 'My program very cool';
     root.appendChild(header);
 }
 
@@ -39,7 +39,7 @@ function createLink (title, id) {
 createLink('Main', 'main');
 createLink('Record', 'record');
 createLink('Help', 'help');
-createLink('Log in', 'log_in');
+createLink('Log in / registration', 'log_in');
 createLink('Start', 'start');
 
 

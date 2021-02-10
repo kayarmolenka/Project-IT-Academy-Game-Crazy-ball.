@@ -1,5 +1,6 @@
 body {
-    background: url(../img/main_bg4.png) center center / cover no-repeat;
+    background: url(../img/main_bg5.jpg) center center / cover no-repeat;
+
     min-height: 100vh;
     font-family: 'Mystical Woods Smooth Script';
     font-weight: normal;
@@ -7,7 +8,9 @@ body {
     .root {
     height: 100vh;
         .header {
-            color: $main-color;
+            color: black;
+            border-bottom: 2px solid black;
+            height: 50px;
                 
         }
         .container {
@@ -21,11 +24,13 @@ body {
                 text-decoration: none;
                 margin-bottom: 20px;
                 border: 1px solid $main-color;
-                background-color: $main-color;
+                background-color: rgb(181, 221, 247);
                 border-radius: 5px;
                 padding: 10px 20px;
                 width: 300px;
                 text-align: center;
+                box-shadow: 0 2px 5px rgba(103, 222, 243, 0.7);
+
             }
         }
     }
