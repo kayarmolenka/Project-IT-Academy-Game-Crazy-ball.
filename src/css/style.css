@@ -164,7 +164,7 @@ body .root .container .a {
   visibility: visible;
 }
 
-button {
+.container_modal .form_registration .btn_modal_registration {
   background-color: red;
   border: 2px solid red;
   border-radius: 4px;
@@ -183,8 +183,28 @@ button {
   color: #fff;
 }
 
-.qqq {
-  opacity: 0.7;
-  z-index: 30;
+.btn_modal_login {
+  background: #9db323;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.checkbox {
+  display: inline;
+}
+
+#check_label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  width: 100px;
 }
 /*# sourceMappingURL=style.css.map */

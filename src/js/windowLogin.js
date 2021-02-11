@@ -2,7 +2,7 @@ import {root} from './script.js';
 
 export let btn;
 export let form;
-function callRegistrationWindow() {
+function callWindowLogin() {
 
     const containerModal = document.createElement('div');
 
@@ -12,7 +12,7 @@ function callRegistrationWindow() {
     
         form = document.createElement('form');
 
-        h2.textContent = 'Create Account';
+        h2.textContent = 'LOGIN';
         form.classList.add('form_registration');
         form.setAttribute('name', 'form_inputs');
         header.classList.add('header_modal_login');
@@ -39,49 +39,54 @@ function callRegistrationWindow() {
         input.setAttribute('placeholder',options.placeholder);
         input.setAttribute('class','input');
         input.setAttribute('id',options.inputID);
+        input.setAttribute('for',options.inputLab);
+        label.setAttribute('id', options.labelID);
 
         icon.setAttribute('class','fas fa-check-circle'); 
         icon.setAttribute('id',options.iconID);
 
-        formControl.append(label, input, icon, small);
+        label.appendChild(input);
+
+        formControl.append(label, icon, small);
 
         form.append(formControl);
 
     }
     createFormControl({
-        nameInput: 'Username',
-        placeholder: 'nic08',
+        nameInput: '',
+        placeholder: 'Username',
         iconID: 'form_modal_icon_1',
         inputID: 'input_1',
-        inputType: 'text'
+        inputType: 'text',
+        inputLab: 'input_1',
+        labelID: 'name_label'
     });
 
+    
     createFormControl({
-        nameInput: 'Email',
-        placeholder: 'kayarmolenka@gmail.com',
-        iconID: 'form_modal_icon_2',
-        inputID: 'input_2',
-        inputType: 'email'
-    });
-
-    createFormControl({
-        nameInput: 'Password',
-        placeholder: '47hYnn&',
+        nameInput: '',
+        placeholder: 'Password',
         iconID: 'form_modal_icon_2',
         inputID: 'input_3',
-        inputType: 'password'
+        inputType: 'password',
+        inputLab: 'input_3',
+        labelID: 'pass_label'
     });
 
     createFormControl({
-        nameInput: 'Password check',
-        placeholder: '47hYnn&',
-        iconID: 'form_modal_icon_4',
-        inputID: 'input_4',
-        inputType: 'password'
+        nameInput: 'Remember me',
+        placeholder: '',
+        iconID: 'form_modal_icon_2',
+        inputID: 'checkbox',
+        inputType: 'checkbox',
+        inputLab: 'checkbox',
+        labelID: 'check_label'
     });
     
     function createButton() {
         btn = document.createElement('button');
+
+        btn.classList.add('btn_modal_login');
 
         form.append(btn);
         btn.insertAdjacentText('afterbegin','Sumbit');
@@ -94,4 +99,4 @@ function callRegistrationWindow() {
     root.append(containerModal);
 }
 
-export default callRegistrationWindow;
+export default callWindowLogin;

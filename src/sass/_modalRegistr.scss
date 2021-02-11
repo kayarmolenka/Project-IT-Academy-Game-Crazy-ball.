@@ -81,23 +81,24 @@
                 visibility: visible;    
             }
         }
+        .btn_modal_registration {
+            background-color: red;
+            border: 2px solid red;
+            border-radius: 4px;
+            color: #fff;
+            display: block;
+            padding: 10px;
+            width: 100%;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+        }
     }
     
 }
     
 
-button {
-    background-color: red;
-    border: 2px solid red;
-    border-radius: 4px;
-    color: #fff;
-    display: block;
-    padding: 10px;
-    width: 100%;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    cursor: pointer;
-}
+
 
 .change_color_button {
     background-color: blue;
@@ -105,9 +106,4 @@ button {
     color: #fff;  
 }
 
-.qqq {
-    
-    opacity: 0.7;
-    z-index: 30;
-}
 

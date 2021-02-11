@@ -1,4 +1,4 @@
-import {btn, form} from './modal_Login.js';
+import {btn, form} from './windowRegistr.js';
 
 
 
