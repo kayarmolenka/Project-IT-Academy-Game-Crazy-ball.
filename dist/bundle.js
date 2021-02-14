@@ -10,7 +10,8 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "root": () => (/* binding */ root)
+/* harmony export */   "root": () => (/* binding */ root),
+/* harmony export */   "linkLogReg": () => (/* binding */ linkLogReg)
 /* harmony export */ });
 /* harmony import */ var _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./windowRegistr.js */ "./src/js/windowRegistr.js");
 /* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./validate.js */ "./src/js/validate.js");
@@ -21,19 +22,69 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const root = document.querySelector('.root');
-let container;
+let container, inputFile, imgAccount, labelAccount, header;
 
 function createHeader () {
-    let header = document.createElement('header');
-        // h1 = document.createElement('h1');
-
+    header = document.createElement('header');
+       
     header.classList.add('header');
-    // header.appendChild(h1);
-    // h1.innerHTML = 'My program very cool';
+        
     root.appendChild(header);
 }
 
 createHeader();
+
+function createContentHeader() {
+    const  div = document.createElement('div'),
+           a = document.createElement('a');
+
+    imgAccount = document.createElement('img'),
+    inputFile = document.createElement('input');
+    labelAccount = document.createElement('label');
+
+    imgAccount.setAttribute('src', 'img/account_icon.png');
+    imgAccount.setAttribute('alt', 'account_img');
+    imgAccount.classList.add('img_account');
+    div.textContent = 'Username';
+    a.classList.add('list_acc');
+    inputFile.setAttribute('type', 'file');
+    inputFile.setAttribute('id', 'account_file');
+    labelAccount.setAttribute('for', 'account_file');
+    labelAccount.setAttribute('id', 'label_account');
+
+    labelAccount.append(inputFile, imgAccount);
+    a.append(div, labelAccount);
+    header.append(a);
+}
+
+// createContentHeader();
+
+// inputFile.addEventListener('change', (event) => {
+//     const selectedFile = event.target.files[0];
+//     const reader = new FileReader();
+    
+//     imgAccount.title = selectedFile.name;
+      
+//     reader.onload = function(event) {
+//         imgAccount.src = event.target.result;
+//     };
+//     reader.readAsDataURL(selectedFile);
+// })
+let linkLogReg;
+function createHeaderLoginRegistration() {
+    linkLogReg = document.createElement('a');
+
+    linkLogReg.classList.add('link_log_reg');
+    linkLogReg.textContent = 'Log in / Registration';
+
+    header.append(linkLogReg);
+}
+
+createHeaderLoginRegistration();
+
+(0,_windowLogin__WEBPACK_IMPORTED_MODULE_2__.default)();
+
+
 
 function createContainer() {
     container = document.createElement('div');
@@ -56,22 +107,20 @@ function createLink (title, id) {
 createLink('Main', 'main');
 createLink('Record', 'record');
 createLink('Help', 'help');
-createLink('registration', 'log_in');
-createLink('LOGIN', 'log');
+// createLink('registration', 'log_in');
+// createLink('LOGIN', 'log');
 
 
-const linkLog = document.querySelector('#log');
-const linkReg = document.querySelector('#log_in');
+// const linkLog = document.querySelector('#log');
+// const linkReg = document.querySelector('#log_in');
 
-linkReg.addEventListener('click', () => {
-    (0,_windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.default)();
-    (0,_validate_js__WEBPACK_IMPORTED_MODULE_1__.default)();
+// linkLogReg.addEventListener('click', () => {
+//     callRegistrationWindow();
+//     actionBtn();                                    window registration
 
-});
+// });
 
-linkLog.addEventListener('click', () => {
-    (0,_windowLogin__WEBPACK_IMPORTED_MODULE_2__.default)();
-});
+
 
 
 
@@ -164,113 +213,139 @@ function actionBtn() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "btn": () => (/* binding */ btn),
-/* harmony export */   "form": () => (/* binding */ form),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _script_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./script.js */ "./src/js/script.js");
+/* harmony import */ var _script__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./script */ "./src/js/script.js");
 
 
-let btn;
-let form;
-function callWindowLogin() {
+function m () {
 
-    const containerModal = document.createElement('div');
+let a, header, modal, form;
 
-    function createForm() {
-        let header = document.createElement('div'),
-        h2 = document.createElement('h2');
-    
-        form = document.createElement('form');
+function createHeader() {
+    header = document.createElement('header');
+    document.body.appendChild(header);
+}
+createHeader();
 
-        h2.textContent = 'LOGIN';
-        form.classList.add('form_registration');
-        form.setAttribute('name', 'form_inputs');
-        header.classList.add('header_modal_login');
-        containerModal.classList.add('container_modal');
-    
-        header.append(h2);
-        containerModal.append(header, form);
-    }
-
-    createForm();
-    
-    function createFormControl (options) {
-        let formControl = document.createElement('div'),
-            label = document.createElement('label'),
-            input = document.createElement('input'),
-            icon = document.createElement('i'),
-            small = document.createElement('small');
-            
-        label.textContent = options.nameInput;
-        small.textContent = 'Error message';
-
-        formControl.classList.add('form_control');
-        input.setAttribute('type',options.inputType);
-        input.setAttribute('placeholder',options.placeholder);
-        input.setAttribute('class','input');
-        input.setAttribute('id',options.inputID);
-        input.setAttribute('for',options.inputLab);
-        label.setAttribute('id', options.labelID);
-
-        icon.setAttribute('class','fas fa-check-circle'); 
-        icon.setAttribute('id',options.iconID);
-
-        label.appendChild(input);
-
-        formControl.append(label, icon, small);
-
-        form.append(formControl);
-
-    }
-    createFormControl({
-        nameInput: '',
-        placeholder: 'Username',
-        iconID: 'form_modal_icon_1',
-        inputID: 'input_1',
-        inputType: 'text',
-        inputLab: 'input_1',
-        labelID: 'name_label'
-    });
-
-    
-    createFormControl({
-        nameInput: '',
-        placeholder: 'Password',
-        iconID: 'form_modal_icon_2',
-        inputID: 'input_3',
-        inputType: 'password',
-        inputLab: 'input_3',
-        labelID: 'pass_label'
-    });
-
-    createFormControl({
-        nameInput: 'Remember me',
-        placeholder: '',
-        iconID: 'form_modal_icon_2',
-        inputID: 'checkbox',
-        inputType: 'checkbox',
-        inputLab: 'checkbox',
-        labelID: 'check_label'
-    });
-    
-    function createButton() {
-        btn = document.createElement('button');
-
-        btn.classList.add('btn_modal_login');
-
-        form.append(btn);
-        btn.insertAdjacentText('afterbegin','Sumbit');
-    }
-    
-    createButton();
-
-
-
-    _script_js__WEBPACK_IMPORTED_MODULE_0__.root.append(containerModal);
+function createModal() {
+    modal = document.createElement('div');
+    modal.classList.add('modal');
+    document.body.appendChild(modal);
 }
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (callWindowLogin);
+function createDark() {
+    const dark = document.createElement('div');
+    dark.classList.add('dark');
+    document.body.appendChild(dark);
+}
+
+
+function createHeaderModal() {
+    let headerModal = document.createElement('div');
+
+    headerModal.textContent = 'LOG IN';
+    headerModal.classList.add('header_modal');
+    modal.appendChild(headerModal);
+}
+
+
+
+function createLinks(nameLink, NameClassLink){
+    const ul = document.createElement('ul'),
+        li = document.createElement('li'),
+        icon = document.createElement('i');
+    a = document.createElement('a');
+
+    a.classList.add(NameClassLink);
+
+    a.textContent = nameLink;
+    icon.classList.add('fa', 'fa-sign-in');
+
+    a.appendChild(icon);
+    li.appendChild(a);
+    ul.appendChild(li);
+    header.appendChild(ul);
+}
+
+createLinks('Log in','link_login');
+
+function createForm() {
+    form = document.createElement('form');
+    form.classList.add('form_modal');
+    modal.appendChild(form);
+}
+
+function createInput(ID, NamePlaceholder, TypeInput,labelFor, labelText,labelID) {
+    const input = document.createElement('input'),
+        label = document.createElement('label'),
+        divInput = document.createElement('div');
+
+    input.setAttribute('type', TypeInput);
+    input.setAttribute('placeholder', NamePlaceholder);
+    divInput.classList.add('form_row'); 
+    input.setAttribute('id', ID);
+    label.setAttribute('for', labelFor);
+    label.setAttribute('id', labelID);
+    label.textContent = labelText;
+
+
+    divInput.appendChild(input);  
+    divInput.appendChild(label);  
+    form.appendChild(divInput); 
+
+}
+
+function createLinkForgot() {
+    let linkForgot = document.createElement('a'),
+        divAnhor = document.createElement('div');
+
+    divAnhor.classList.add('form_forgot'); 
+    linkForgot.classList.add('link_forgot'); 
+    linkForgot.textContent = 'Forgot Password?'; 
+
+    divAnhor.appendChild(linkForgot);
+    form.appendChild(divAnhor);
+}
+
+let btn;
+function createButton() {
+    btn = document.createElement('button');
+    let containerBtn = document.createElement('div'); 
+
+    containerBtn.classList.add('form_row', 'form_button'); 
+    btn.classList.add('button_registr');
+    btn.textContent = 'LOG IN';
+
+    containerBtn.appendChild(btn);
+    form.appendChild(containerBtn);   
+}
+
+
+_script__WEBPACK_IMPORTED_MODULE_0__.linkLogReg.addEventListener('click', (e) => {
+    e.preventDefault();
+    createModal();
+    createDark();
+    createHeaderModal();
+    createForm(); 
+    createInput('input_name', 'Username', 'text', 'input_name','', 'label_1');
+    createInput('input_pas', 'Password', 'password', 'input_pas','', 'label_2'); 
+    createInput('input_box', '', 'checkbox', 'input_box', 'Remember me', 'label_3');
+    createButton();
+    createLinkForgot();
+    console.log('Hi')
+    console.log(a)
+    // pro()
+});
+
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (m);
+
+    
+
+
+
 
 /***/ }),
 
