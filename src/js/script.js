@@ -1,6 +1,4 @@
-import callRegistrationWindow from './windowRegistr.js';
-import actionBtn from './validate.js';
-import m from './windowLogin';
+import createModalLoginWindow from './windowLogin';
 
 
 export const root = document.querySelector('.root');
@@ -64,7 +62,7 @@ function createHeaderLoginRegistration() {
 
 createHeaderLoginRegistration();
 
-m();
+createModalLoginWindow();
 
 
 
@@ -80,13 +78,13 @@ function createLink (title, id) {
     let a = document.createElement('a');
 
     a.innerHTML = title;
-    a.classList.add('a');
+    a.classList.add('a_main');
     a.setAttribute('href', '#');
     a.setAttribute('id', id);      
     container.appendChild(a);
 }
 
-createLink('Main', 'main');
+createLink('Start', 'link_start');
 createLink('Record', 'record');
 createLink('Help', 'help');
 // createLink('registration', 'log_in');

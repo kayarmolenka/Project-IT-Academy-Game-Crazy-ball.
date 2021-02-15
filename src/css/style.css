@@ -78,7 +78,7 @@ body .root .container {
   height: 500px;
 }
 
-body .root .container .a {
+body .root .container .a_main {
   color: black;
   text-decoration: none;
   margin-bottom: 20px;
@@ -92,6 +92,10 @@ body .root .container .a {
           box-shadow: 0 2px 5px rgba(103, 222, 243, 0.7);
 }
 
+body .root .container .a_main:hover {
+  background-color: #5eb7f1;
+}
+
 @font-face {
   font-family: 'Mystical Woods Smooth Script';
   src: url("../fonts/MysticalWoodsSmoothScript.eot");
@@ -101,14 +105,17 @@ body .root .container .a {
 }
 
 .container_modal {
-  background-color: #fff;
+  background: #9152f8;
+  background: -webkit-linear-gradient(top, #7579ff, #b224ef);
   width: 400px;
   border-radius: 5px;
   -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   position: fixed;
+  font-family: cursive;
   top: 50%;
   left: 50%;
+  color: white;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
@@ -118,7 +125,6 @@ body .root .container .a {
 }
 
 .container_modal .header_modal_login h2 {
-  font-family: 'Open Sans', sans-serif;
   margin: 0;
   text-align: center;
 }
@@ -132,10 +138,9 @@ body .root .container .a {
   margin-bottom: 10px;
 }
 
-.container_modal .form_registration .form_control label {
+.container_modal .form_registration .form_control .label_form_registration {
   display: inline-block;
   margin-bottom: 5px;
-  font-family: 'Open Sans', sans-serif;
 }
 
 .container_modal .form_registration .form_control .input {
@@ -145,7 +150,6 @@ body .root .container .a {
   width: 100%;
   font-size: 14px;
   display: block;
-  font-family: 'Open Sans', sans-serif;
 }
 
 .container_modal .form_registration .form_control .input_error {
@@ -192,7 +196,7 @@ body .root .container .a {
   color: red;
 }
 
-.container_modal .form_registration .form_control small {
+.container_modal .form_registration .form_control .small_registration {
   color: red;
   font-family: 'Open Sans', sans-serif;
   visibility: hidden;
@@ -205,23 +209,32 @@ body .root .container .a {
 .container_modal .form_registration .btn_modal_registration {
   background-color: red;
   border: 2px solid red;
-  border-radius: 4px;
+  border-radius: 25%;
   color: #fff;
   display: block;
   padding: 10px;
-  width: 100%;
+  width: 100px;
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   cursor: pointer;
 }
 
-.change_color_button {
+.container_modal .form_registration .btn_success {
+  background: green;
+  border: none;
+}
+
+.container_modal .form_registration .change_color_button {
   background-color: blue;
   border: 2px solid blue;
   color: #fff;
 }
 
-.link_login {
+li {
+  list-style-type: none;
+}
+
+li .link_login {
   padding: 5px;
   border-radius: 5px;
   width: 100px;
@@ -246,38 +259,7 @@ body .root .container .a {
   background: -webkit-linear-gradient(top, #7579ff, #b224ef);
 }
 
-.dark {
-  background-color: rgba(0, 0, 0, 0.7);
-  position: fixed;
-  opacity: 1;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-}
-
-li {
-  list-style-type: none;
-}
-
-.fa-sign-in {
-  color: white;
-  padding: 9px;
-}
-
-.link_forgot {
-  font-size: 16px;
-  line-height: 1.4;
-  color: #fff;
-  font-family: cursive;
-}
-
-#input_box {
-  margin-right: 12px;
-}
-
-.header_modal {
+.modal .header_modal {
   text-align: center;
   margin-top: 51px;
   margin-bottom: 20px;
@@ -286,11 +268,11 @@ li {
   font-family: cursive;
 }
 
-.form_row {
+.modal .form_modal .form_row {
   padding: 10px;
 }
 
-#input_name {
+.modal .form_modal .form_row #input_name {
   padding: 10px 20px;
   width: 100%;
   background: transparent;
@@ -301,7 +283,11 @@ li {
   border-bottom-style: outset;
 }
 
-#input_pas {
+.modal .form_modal .form_row #input_name::-webkit-input-placeholder {
+  color: white;
+}
+
+.modal .form_modal .form_row #input_pas {
   padding: 10px 20px;
   width: 100%;
   background: #9152f8;
@@ -313,12 +299,65 @@ li {
   border-bottom-style: outset;
 }
 
-#input_pas::-webkit-input-placeholder {
+.modal .form_modal .form_row #input_pas::-webkit-input-placeholder {
   color: white;
 }
 
-#input_name::-webkit-input-placeholder {
+.modal .form_modal .form_row #input_box {
+  margin-right: 12px;
+}
+
+.modal .form_modal .form_row #label_3 {
   color: white;
+  cursor: pointer;
+  font-family: cursive;
+}
+
+.modal .form_modal .form_button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 20px;
+}
+
+.modal .form_modal .form_button .button_registr {
+  padding: 10px 30px;
+  cursor: pointer;
+  font-family: cursive;
+  border-radius: 25px;
+}
+
+.modal .form_modal .form_button .button_registr:hover {
+  color: white;
+  background: black;
+  border: black;
+}
+
+.modal .form_modal .form_forgot {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.modal .form_modal .form_forgot .link_registration {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #fff;
+  font-family: cursive;
+  cursor: pointer;
+}
+
+.dark {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  opacity: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
 }
 
 #input_pas::-webkit-input-placeholder {
@@ -415,39 +454,5 @@ li {
   text-indent: 500px;
   -webkit-transition: text-indent 0.3s ease;
   transition: text-indent 0.3s ease;
-}
-
-.button_registr {
-  padding: 10px 30px;
-  cursor: pointer;
-  font-family: cursive;
-  border-radius: 25px;
-}
-
-.button_registr:hover {
-  color: white;
-  background: black;
-  border: black;
-}
-
-.form_button {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-top: 20px;
-}
-
-.form_forgot {
-  margin-top: 40px;
-  text-align: center;
-}
-
-#label_3 {
-  color: white;
-  cursor: pointer;
-  font-family: cursive;
 }
 /*# sourceMappingURL=style.css.map */

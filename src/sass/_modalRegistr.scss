@@ -1,17 +1,20 @@
 .container_modal {
-    background-color: #fff;
+    background: #9152f8;
+    background: -webkit-linear-gradient(top, #7579ff, #b224ef);
     width: 400px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     position: fixed;
+    font-family: cursive;
     top: 50%;
     left: 50%;
+    color: white;
     transform: translate(-50%, -50%);
     // visibility: hidden;
     .header_modal_login {
         padding: 20px 40px;
         h2 {
-            font-family: 'Open Sans', sans-serif;
+            // font-family: 'Open Sans', sans-serif;
             margin: 0;
             text-align: center;
             }
@@ -23,10 +26,10 @@
         .form_control {
             margin-bottom: 10px;
             // padding-bottom: 20px;
-            label {
+            .label_form_registration {
                 display: inline-block;
                 margin-bottom: 5px;
-                font-family: 'Open Sans', sans-serif;
+                // font-family: 'Open Sans', sans-serif;
             }
             .input{
                 border-radius: 5px;
@@ -35,7 +38,7 @@
                 width: 100%;
                 font-size: 14px; 
                 display: block;
-                font-family: 'Open Sans', sans-serif;
+                // font-family: 'Open Sans', sans-serif;
             }
             .input_error {
                 border: 2px solid red;    
@@ -72,7 +75,7 @@
                 visibility: visible;
                 color: red;
             }
-            small {
+            .small_registration {
                 color: red;
                 font-family: 'Open Sans', sans-serif;
                 visibility: hidden;
@@ -84,14 +87,23 @@
         .btn_modal_registration {
             background-color: red;
             border: 2px solid red;
-            border-radius: 4px;
+            border-radius: 25%;
             color: #fff;
             display: block;
             padding: 10px;
-            width: 100%;
+            width: 100px;
             font-family: 'Open Sans', sans-serif;
             font-size: 16px;
             cursor: pointer;
+        }
+        .btn_success {
+            background: green;
+            border: none;
+        }
+        .change_color_button {
+            background-color: blue;
+            border: 2px solid blue;
+            color: #fff;  
         }
     }
     
@@ -100,10 +112,6 @@
 
 
 
-.change_color_button {
-    background-color: blue;
-    border: 2px solid blue;
-    color: #fff;  
-}
+
 
 

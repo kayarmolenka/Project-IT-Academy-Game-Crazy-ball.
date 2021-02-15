@@ -1,14 +1,12 @@
 import {linkLogReg} from './script';
+import callRegistrationWindow from './windowRegistr.js';
+import actionBtn from './validate.js';
 
-function m () {
+export let linkRegistration;
 
-let a, header, modal, form;
+function createModalLoginWindow () {
 
-function createHeader() {
-    header = document.createElement('header');
-    document.body.appendChild(header);
-}
-createHeader();
+let modal, form, dark;
 
 function createModal() {
     modal = document.createElement('div');
@@ -17,7 +15,7 @@ function createModal() {
 }
 
 function createDark() {
-    const dark = document.createElement('div');
+    dark = document.createElement('div');
     dark.classList.add('dark');
     document.body.appendChild(dark);
 }
@@ -30,27 +28,6 @@ function createHeaderModal() {
     headerModal.classList.add('header_modal');
     modal.appendChild(headerModal);
 }
-
-
-
-function createLinks(nameLink, NameClassLink){
-    const ul = document.createElement('ul'),
-        li = document.createElement('li'),
-        icon = document.createElement('i');
-    a = document.createElement('a');
-
-    a.classList.add(NameClassLink);
-
-    a.textContent = nameLink;
-    icon.classList.add('fa', 'fa-sign-in');
-
-    a.appendChild(icon);
-    li.appendChild(a);
-    ul.appendChild(li);
-    header.appendChild(ul);
-}
-
-createLinks('Log in','link_login');
 
 function createForm() {
     form = document.createElement('form');
@@ -79,15 +56,17 @@ function createInput(ID, NamePlaceholder, TypeInput,labelFor, labelText,labelID)
 }
 
 function createLinkForgot() {
-    let linkForgot = document.createElement('a'),
-        divAnhor = document.createElement('div');
+    let divAnhor = document.createElement('div');
 
+    linkRegistration = document.createElement('a');
+    
     divAnhor.classList.add('form_forgot'); 
-    linkForgot.classList.add('link_forgot'); 
-    linkForgot.textContent = 'Forgot Password?'; 
+    linkRegistration.classList.add('link_registration'); 
+    linkRegistration.textContent = 'Create new account'; 
 
-    divAnhor.appendChild(linkForgot);
+    divAnhor.appendChild(linkRegistration);
     form.appendChild(divAnhor);
+    
 }
 
 let btn;
@@ -115,14 +94,25 @@ linkLogReg.addEventListener('click', (e) => {
     createInput('input_box', '', 'checkbox', 'input_box', 'Remember me', 'label_3');
     createButton();
     createLinkForgot();
-    console.log('Hi')
-    console.log(a)
+    
+    
     // pro()
+    linkRegistration.addEventListener('click', () => {
+        callRegistrationWindow();
+        actionBtn();
+        modal.remove();
+        dark.remove();
+
+    })
 });
+
+
+
+
 
 }
 
-export default m;
+export default createModalLoginWindow;
 
     
 

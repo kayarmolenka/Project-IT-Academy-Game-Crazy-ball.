@@ -13,11 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "root": () => (/* binding */ root),
 /* harmony export */   "linkLogReg": () => (/* binding */ linkLogReg)
 /* harmony export */ });
-/* harmony import */ var _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./windowRegistr.js */ "./src/js/windowRegistr.js");
-/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./validate.js */ "./src/js/validate.js");
-/* harmony import */ var _windowLogin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./windowLogin */ "./src/js/windowLogin.js");
-
-
+/* harmony import */ var _windowLogin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./windowLogin */ "./src/js/windowLogin.js");
 
 
 
@@ -82,7 +78,7 @@ function createHeaderLoginRegistration() {
 
 createHeaderLoginRegistration();
 
-(0,_windowLogin__WEBPACK_IMPORTED_MODULE_2__.default)();
+(0,_windowLogin__WEBPACK_IMPORTED_MODULE_0__.default)();
 
 
 
@@ -98,13 +94,13 @@ function createLink (title, id) {
     let a = document.createElement('a');
 
     a.innerHTML = title;
-    a.classList.add('a');
+    a.classList.add('a_main');
     a.setAttribute('href', '#');
     a.setAttribute('id', id);      
     container.appendChild(a);
 }
 
-createLink('Main', 'main');
+createLink('Start', 'link_start');
 createLink('Record', 'record');
 createLink('Help', 'help');
 // createLink('registration', 'log_in');
@@ -152,53 +148,39 @@ function actionBtn() {
 
     _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.btn.addEventListener('click', (e) => {
         e.preventDefault();
-        console.dir(_windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.form)
-        const inputName = _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.form[0],
-              inputEmail = _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.form[1],
-              inputPas = _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.form[2],
-              inputPasRep = _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.form[3];
-        
-        const i1 = _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.form.ownerDocument.all[62],
-              i2 = _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.form.ownerDocument.all[67],
-              i3 = _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.form.ownerDocument.all[72],
-              i4 = _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.form.ownerDocument.all[77],
-              s1 = _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.form.ownerDocument.all[63],
-              s2 = _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.form.ownerDocument.all[68],
-              s3 = _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.form.ownerDocument.all[73],
-              s4 = _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.form.ownerDocument.all[78];
-
+        const inputName = document.querySelector('#input_1'),
+              inputEmail = document.querySelector('#input_2'),
+              inputPas = document.querySelector('#input_3'),
+              inputPasRep = document.querySelector('#input_4'),        
+              i1 = document.querySelector('#form_modal_icon_1'),
+              i2 = document.querySelector('#form_modal_icon_2'),
+              i3 = document.querySelector('#form_modal_icon_3'),
+              i4 = document.querySelector('#form_modal_icon_4'),
+              s1 = document.querySelector('#small_name'),
+              s2 = document.querySelector('#small_email'),
+              s3 = document.querySelector('#small_password'),
+              s4 = document.querySelector('#small_repeat_passwords');
+     
         if(inputPas.value !== inputPasRep.value) {
+            i3.classList.add('i_error');
+            i4.classList.add('i_error');
             inputPas.classList.add('input_error');
             inputPasRep.classList.add('input_error');
-            i3.classList.remove('fas', 'fa-check-circle');
-            i3.classList.add('fas', 'fa-exclamation-circle', 'i_error');
-            i4.classList.remove('fas', 'fa-check-circle');
-            i4.classList.add('fas', 'fa-exclamation-circle', 'i_error');
-            s3.innerHTML = 'password is incorrect';
             s3.classList.add('small_visible');
             s4.classList.add('small_visible');
-        } else {                                           //change the style of the icon
-            inputPas.classList.add('input_success');
-            inputPasRep.classList.add('input_success');
+            s3.textContent = 'incorrect password';
+            s4.textContent = 'incorrect password';
+        } else {
             i3.classList.add('i_super');
             i4.classList.add('i_super');
-            s3.classList.remove('small_visible');
-            s4.classList.remove('small_visible');
-            i3.classList.add('fa-check-circle');
-            i3.classList.remove('fa-exclamation-circle', 'i_error');
-            i4.classList.add('fa-check-circle');
-            i4.classList.remove('fa-exclamation-circle', 'i_error');
-            _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.btn.style.background = 'green';
-            _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.btn.style.border = '1px solid green';
-        } 
+            inputPas.classList.add('input_success');
+            inputPasRep.classList.add('input_success');
+            _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.btn.classList.add('btn_success');
+            _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.btn.classList.remove('change_color_button');
+        }    
     });
 
 }
-
-
-
-
-
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (actionBtn);
 
@@ -213,20 +195,21 @@ function actionBtn() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "linkRegistration": () => (/* binding */ linkRegistration),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _script__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./script */ "./src/js/script.js");
+/* harmony import */ var _windowRegistr_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./windowRegistr.js */ "./src/js/windowRegistr.js");
+/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./validate.js */ "./src/js/validate.js");
 
 
-function m () {
 
-let a, header, modal, form;
 
-function createHeader() {
-    header = document.createElement('header');
-    document.body.appendChild(header);
-}
-createHeader();
+let linkRegistration;
+
+function createModalLoginWindow () {
+
+let modal, form, dark;
 
 function createModal() {
     modal = document.createElement('div');
@@ -235,7 +218,7 @@ function createModal() {
 }
 
 function createDark() {
-    const dark = document.createElement('div');
+    dark = document.createElement('div');
     dark.classList.add('dark');
     document.body.appendChild(dark);
 }
@@ -248,27 +231,6 @@ function createHeaderModal() {
     headerModal.classList.add('header_modal');
     modal.appendChild(headerModal);
 }
-
-
-
-function createLinks(nameLink, NameClassLink){
-    const ul = document.createElement('ul'),
-        li = document.createElement('li'),
-        icon = document.createElement('i');
-    a = document.createElement('a');
-
-    a.classList.add(NameClassLink);
-
-    a.textContent = nameLink;
-    icon.classList.add('fa', 'fa-sign-in');
-
-    a.appendChild(icon);
-    li.appendChild(a);
-    ul.appendChild(li);
-    header.appendChild(ul);
-}
-
-createLinks('Log in','link_login');
 
 function createForm() {
     form = document.createElement('form');
@@ -297,15 +259,17 @@ function createInput(ID, NamePlaceholder, TypeInput,labelFor, labelText,labelID)
 }
 
 function createLinkForgot() {
-    let linkForgot = document.createElement('a'),
-        divAnhor = document.createElement('div');
+    let divAnhor = document.createElement('div');
 
+    linkRegistration = document.createElement('a');
+    
     divAnhor.classList.add('form_forgot'); 
-    linkForgot.classList.add('link_forgot'); 
-    linkForgot.textContent = 'Forgot Password?'; 
+    linkRegistration.classList.add('link_registration'); 
+    linkRegistration.textContent = 'Create new account'; 
 
-    divAnhor.appendChild(linkForgot);
+    divAnhor.appendChild(linkRegistration);
     form.appendChild(divAnhor);
+    
 }
 
 let btn;
@@ -333,14 +297,25 @@ _script__WEBPACK_IMPORTED_MODULE_0__.linkLogReg.addEventListener('click', (e) =>
     createInput('input_box', '', 'checkbox', 'input_box', 'Remember me', 'label_3');
     createButton();
     createLinkForgot();
-    console.log('Hi')
-    console.log(a)
+    
+    
     // pro()
+    linkRegistration.addEventListener('click', () => {
+        (0,_windowRegistr_js__WEBPACK_IMPORTED_MODULE_1__.default)();
+        (0,_validate_js__WEBPACK_IMPORTED_MODULE_2__.default)();
+        modal.remove();
+        dark.remove();
+
+    })
 });
+
+
+
+
 
 }
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (m);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createModalLoginWindow);
 
     
 
@@ -397,6 +372,9 @@ function callRegistrationWindow() {
             
         label.textContent = options.nameInput;
         small.textContent = 'Error message';
+        label.classList.add('label_form_registration');
+        small.classList.add('small_registration');
+        small.setAttribute('id', options.smallId);
 
         formControl.classList.add('form_control');
         input.setAttribute('type',options.inputType);
@@ -417,7 +395,8 @@ function callRegistrationWindow() {
         placeholder: 'nic08',
         iconID: 'form_modal_icon_1',
         inputID: 'input_1',
-        inputType: 'text'
+        inputType: 'text',
+        smallId: 'small_name'
     });
 
     createFormControl({
@@ -425,15 +404,17 @@ function callRegistrationWindow() {
         placeholder: 'kayarmolenka@gmail.com',
         iconID: 'form_modal_icon_2',
         inputID: 'input_2',
-        inputType: 'email'
+        inputType: 'email',
+        smallId: 'small_email'
     });
 
     createFormControl({
         nameInput: 'Password',
         placeholder: '47hYnn&',
-        iconID: 'form_modal_icon_2',
+        iconID: 'form_modal_icon_3',
         inputID: 'input_3',
-        inputType: 'password'
+        inputType: 'password',
+        smallId: 'small_password'
     });
 
     createFormControl({
@@ -441,7 +422,8 @@ function callRegistrationWindow() {
         placeholder: '47hYnn&',
         iconID: 'form_modal_icon_4',
         inputID: 'input_4',
-        inputType: 'password'
+        inputType: 'password',
+        smallId: 'small_repeat_passwords'
     });
     
     function createButton() {

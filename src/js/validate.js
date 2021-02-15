@@ -13,52 +13,38 @@ function actionBtn() {
 
     btn.addEventListener('click', (e) => {
         e.preventDefault();
-        console.dir(form)
-        const inputName = form[0],
-              inputEmail = form[1],
-              inputPas = form[2],
-              inputPasRep = form[3];
-        
-        const i1 = form.ownerDocument.all[62],
-              i2 = form.ownerDocument.all[67],
-              i3 = form.ownerDocument.all[72],
-              i4 = form.ownerDocument.all[77],
-              s1 = form.ownerDocument.all[63],
-              s2 = form.ownerDocument.all[68],
-              s3 = form.ownerDocument.all[73],
-              s4 = form.ownerDocument.all[78];
-
+        const inputName = document.querySelector('#input_1'),
+              inputEmail = document.querySelector('#input_2'),
+              inputPas = document.querySelector('#input_3'),
+              inputPasRep = document.querySelector('#input_4'),        
+              i1 = document.querySelector('#form_modal_icon_1'),
+              i2 = document.querySelector('#form_modal_icon_2'),
+              i3 = document.querySelector('#form_modal_icon_3'),
+              i4 = document.querySelector('#form_modal_icon_4'),
+              s1 = document.querySelector('#small_name'),
+              s2 = document.querySelector('#small_email'),
+              s3 = document.querySelector('#small_password'),
+              s4 = document.querySelector('#small_repeat_passwords');
+     
         if(inputPas.value !== inputPasRep.value) {
+            i3.classList.add('i_error');
+            i4.classList.add('i_error');
             inputPas.classList.add('input_error');
             inputPasRep.classList.add('input_error');
-            i3.classList.remove('fas', 'fa-check-circle');
-            i3.classList.add('fas', 'fa-exclamation-circle', 'i_error');
-            i4.classList.remove('fas', 'fa-check-circle');
-            i4.classList.add('fas', 'fa-exclamation-circle', 'i_error');
-            s3.innerHTML = 'password is incorrect';
             s3.classList.add('small_visible');
             s4.classList.add('small_visible');
-        } else {                                           //change the style of the icon
-            inputPas.classList.add('input_success');
-            inputPasRep.classList.add('input_success');
+            s3.textContent = 'incorrect password';
+            s4.textContent = 'incorrect password';
+        } else {
             i3.classList.add('i_super');
             i4.classList.add('i_super');
-            s3.classList.remove('small_visible');
-            s4.classList.remove('small_visible');
-            i3.classList.add('fa-check-circle');
-            i3.classList.remove('fa-exclamation-circle', 'i_error');
-            i4.classList.add('fa-check-circle');
-            i4.classList.remove('fa-exclamation-circle', 'i_error');
-            btn.style.background = 'green';
-            btn.style.border = '1px solid green';
-        } 
+            inputPas.classList.add('input_success');
+            inputPasRep.classList.add('input_success');
+            btn.classList.add('btn_success');
+            btn.classList.remove('change_color_button');
+        }    
     });
 
 }
-
-
-
-
-
 
 export default actionBtn;

@@ -33,6 +33,9 @@ function callRegistrationWindow() {
             
         label.textContent = options.nameInput;
         small.textContent = 'Error message';
+        label.classList.add('label_form_registration');
+        small.classList.add('small_registration');
+        small.setAttribute('id', options.smallId);
 
         formControl.classList.add('form_control');
         input.setAttribute('type',options.inputType);
@@ -53,7 +56,8 @@ function callRegistrationWindow() {
         placeholder: 'nic08',
         iconID: 'form_modal_icon_1',
         inputID: 'input_1',
-        inputType: 'text'
+        inputType: 'text',
+        smallId: 'small_name'
     });
 
     createFormControl({
@@ -61,15 +65,17 @@ function callRegistrationWindow() {
         placeholder: 'kayarmolenka@gmail.com',
         iconID: 'form_modal_icon_2',
         inputID: 'input_2',
-        inputType: 'email'
+        inputType: 'email',
+        smallId: 'small_email'
     });
 
     createFormControl({
         nameInput: 'Password',
         placeholder: '47hYnn&',
-        iconID: 'form_modal_icon_2',
+        iconID: 'form_modal_icon_3',
         inputID: 'input_3',
-        inputType: 'password'
+        inputType: 'password',
+        smallId: 'small_password'
     });
 
     createFormControl({
@@ -77,7 +83,8 @@ function callRegistrationWindow() {
         placeholder: '47hYnn&',
         iconID: 'form_modal_icon_4',
         inputID: 'input_4',
-        inputType: 'password'
+        inputType: 'password',
+        smallId: 'small_repeat_passwords'
     });
     
     function createButton() {
