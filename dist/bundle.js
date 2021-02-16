@@ -2,6 +2,58 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/js/events.js":
+/*!**************************!*\
+  !*** ./src/js/events.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _windowLogin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./windowLogin */ "./src/js/windowLogin.js");
+/* harmony import */ var _windowRegistr_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./windowRegistr.js */ "./src/js/windowRegistr.js");
+/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./validate.js */ "./src/js/validate.js");
+
+
+
+
+
+
+function closeWindowLogin() {
+  
+
+    _windowLogin__WEBPACK_IMPORTED_MODULE_0__.closeBtn.addEventListener('click', () => {
+        _windowLogin__WEBPACK_IMPORTED_MODULE_0__.modal.remove();
+        _windowLogin__WEBPACK_IMPORTED_MODULE_0__.dark.remove();    
+    });
+
+    _windowLogin__WEBPACK_IMPORTED_MODULE_0__.linkRegistration.addEventListener('click', () => {
+        _windowLogin__WEBPACK_IMPORTED_MODULE_0__.modal.remove();
+        _windowLogin__WEBPACK_IMPORTED_MODULE_0__.dark.remove();
+        (0,_windowRegistr_js__WEBPACK_IMPORTED_MODULE_1__.default)();
+        (0,_validate_js__WEBPACK_IMPORTED_MODULE_2__.default)();
+        
+        let closeRegistration = document.querySelector('.close_btn_window_registration');
+        let modalRegistration = document.querySelector('.container_modal');
+
+
+        closeRegistration.addEventListener('click', (e) => {
+            modalRegistration.remove();
+        });
+    });
+
+    
+    
+   
+   
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (closeWindowLogin);
+
+/***/ }),
+
 /***/ "./src/js/script.js":
 /*!**************************!*\
   !*** ./src/js/script.js ***!
@@ -196,20 +248,24 @@ function actionBtn() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "linkRegistration": () => (/* binding */ linkRegistration),
+/* harmony export */   "closeBtn": () => (/* binding */ closeBtn),
+/* harmony export */   "modal": () => (/* binding */ modal),
+/* harmony export */   "dark": () => (/* binding */ dark),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _script__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./script */ "./src/js/script.js");
-/* harmony import */ var _windowRegistr_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./windowRegistr.js */ "./src/js/windowRegistr.js");
-/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./validate.js */ "./src/js/validate.js");
-
+/* harmony import */ var _events__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./events */ "./src/js/events.js");
 
 
 
 let linkRegistration;
+let closeBtn;
+let modal;
+let dark;
 
 function createModalLoginWindow () {
 
-let modal, form, dark;
+let form;
 
 function createModal() {
     modal = document.createElement('div');
@@ -221,6 +277,12 @@ function createDark() {
     dark = document.createElement('div');
     dark.classList.add('dark');
     document.body.appendChild(dark);
+}
+
+function createClose() {
+    closeBtn = document.createElement('i');
+    closeBtn.classList.add('fas', 'fa-times', 'close_btn_window_login');
+    modal.appendChild(closeBtn);
 }
 
 
@@ -290,6 +352,7 @@ _script__WEBPACK_IMPORTED_MODULE_0__.linkLogReg.addEventListener('click', (e) =>
     e.preventDefault();
     createModal();
     createDark();
+    createClose();
     createHeaderModal();
     createForm(); 
     createInput('input_name', 'Username', 'text', 'input_name','', 'label_1');
@@ -297,16 +360,10 @@ _script__WEBPACK_IMPORTED_MODULE_0__.linkLogReg.addEventListener('click', (e) =>
     createInput('input_box', '', 'checkbox', 'input_box', 'Remember me', 'label_3');
     createButton();
     createLinkForgot();
-    
+    (0,_events__WEBPACK_IMPORTED_MODULE_1__.default)();
     
     // pro()
-    linkRegistration.addEventListener('click', () => {
-        (0,_windowRegistr_js__WEBPACK_IMPORTED_MODULE_1__.default)();
-        (0,_validate_js__WEBPACK_IMPORTED_MODULE_2__.default)();
-        modal.remove();
-        dark.remove();
-
-    })
+    
 });
 
 
@@ -339,26 +396,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _script_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./script.js */ "./src/js/script.js");
 
 
+
+
 let btn;
 let form;
+
+
 function callRegistrationWindow() {
 
     const containerModal = document.createElement('div');
 
     function createForm() {
         let header = document.createElement('div'),
-        h2 = document.createElement('h2');
-    
-        form = document.createElement('form');
+            h2 = document.createElement('h2'),
+            closeModalRegistration = document.createElement('i');
 
+        form = document.createElement('form');
+        
         h2.textContent = 'Create Account';
         form.classList.add('form_registration');
         form.setAttribute('name', 'form_inputs');
         header.classList.add('header_modal_login');
         containerModal.classList.add('container_modal');
+        closeModalRegistration.classList.add('fas', 'fa-times', 'close_btn_window_registration');
+
     
         header.append(h2);
-        containerModal.append(header, form);
+        containerModal.append(header, form, closeModalRegistration);
     }
 
     createForm();
@@ -429,10 +493,15 @@ function callRegistrationWindow() {
     function createButton() {
         btn = document.createElement('button');
         
-        btn.classList.add('btn_modal_registration');
+        let div = document.createElement('div');
 
-        form.append(btn);
-        btn.insertAdjacentText('afterbegin','Sumbit');
+        btn.classList.add('btn_modal_registration');
+        btn.textContent = 'Submit';
+        div.classList.add('btn_modal_registration_form');
+
+        div.append(btn);
+        form.append(div);
+        
     }
     
     createButton();

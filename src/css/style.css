@@ -120,6 +120,14 @@ body .root .container .a_main:hover {
           transform: translate(-50%, -50%);
 }
 
+.container_modal .close_btn_window_registration {
+  position: fixed;
+  color: black;
+  top: 2px;
+  left: 384px;
+  cursor: pointer;
+}
+
 .container_modal .header_modal_login {
   padding: 20px 40px;
 }
@@ -206,27 +214,37 @@ body .root .container .a_main:hover {
   visibility: visible;
 }
 
-.container_modal .form_registration .btn_modal_registration {
-  background-color: red;
-  border: 2px solid red;
-  border-radius: 25%;
+.container_modal .form_registration .btn_modal_registration_form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container_modal .form_registration .btn_modal_registration_form .btn_modal_registration {
+  background-color: #fff;
+  border: 2px solid #fff;
+  border-radius: 10px;
   color: #fff;
   display: block;
   padding: 10px;
-  width: 100px;
+  width: 160px;
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   cursor: pointer;
+  color: black;
 }
 
-.container_modal .form_registration .btn_success {
+.container_modal .form_registration .btn_modal_registration_form .btn_success {
   background: green;
   border: none;
 }
 
-.container_modal .form_registration .change_color_button {
-  background-color: blue;
-  border: 2px solid blue;
+.container_modal .form_registration .btn_modal_registration_form .change_color_button {
+  background-color: black;
+  border: 2px solid black;
   color: #fff;
 }
 
@@ -358,6 +376,13 @@ li .link_login {
   bottom: 0;
   left: 0;
   z-index: 10;
+}
+
+.close_btn_window_login {
+  position: absolute;
+  left: 284px;
+  top: 4px;
+  cursor: pointer;
 }
 
 #input_pas::-webkit-input-placeholder {

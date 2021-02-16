@@ -1,12 +1,14 @@
 import {linkLogReg} from './script';
-import callRegistrationWindow from './windowRegistr.js';
-import actionBtn from './validate.js';
+import closeWindowLogin from './events'
 
 export let linkRegistration;
+export let closeBtn;
+export let modal;
+export let dark;
 
 function createModalLoginWindow () {
 
-let modal, form, dark;
+let form;
 
 function createModal() {
     modal = document.createElement('div');
@@ -18,6 +20,12 @@ function createDark() {
     dark = document.createElement('div');
     dark.classList.add('dark');
     document.body.appendChild(dark);
+}
+
+function createClose() {
+    closeBtn = document.createElement('i');
+    closeBtn.classList.add('fas', 'fa-times', 'close_btn_window_login');
+    modal.appendChild(closeBtn);
 }
 
 
@@ -87,6 +95,7 @@ linkLogReg.addEventListener('click', (e) => {
     e.preventDefault();
     createModal();
     createDark();
+    createClose();
     createHeaderModal();
     createForm(); 
     createInput('input_name', 'Username', 'text', 'input_name','', 'label_1');
@@ -94,16 +103,10 @@ linkLogReg.addEventListener('click', (e) => {
     createInput('input_box', '', 'checkbox', 'input_box', 'Remember me', 'label_3');
     createButton();
     createLinkForgot();
-    
+    closeWindowLogin();
     
     // pro()
-    linkRegistration.addEventListener('click', () => {
-        callRegistrationWindow();
-        actionBtn();
-        modal.remove();
-        dark.remove();
-
-    })
+    
 });
 
 

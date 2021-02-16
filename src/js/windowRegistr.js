@@ -1,25 +1,32 @@
 import {root} from './script.js';
 
+
+
 export let btn;
 export let form;
+
+
 function callRegistrationWindow() {
 
     const containerModal = document.createElement('div');
 
     function createForm() {
         let header = document.createElement('div'),
-        h2 = document.createElement('h2');
-    
-        form = document.createElement('form');
+            h2 = document.createElement('h2'),
+            closeModalRegistration = document.createElement('i');
 
+        form = document.createElement('form');
+        
         h2.textContent = 'Create Account';
         form.classList.add('form_registration');
         form.setAttribute('name', 'form_inputs');
         header.classList.add('header_modal_login');
         containerModal.classList.add('container_modal');
+        closeModalRegistration.classList.add('fas', 'fa-times', 'close_btn_window_registration');
+
     
         header.append(h2);
-        containerModal.append(header, form);
+        containerModal.append(header, form, closeModalRegistration);
     }
 
     createForm();
@@ -90,10 +97,15 @@ function callRegistrationWindow() {
     function createButton() {
         btn = document.createElement('button');
         
-        btn.classList.add('btn_modal_registration');
+        let div = document.createElement('div');
 
-        form.append(btn);
-        btn.insertAdjacentText('afterbegin','Sumbit');
+        btn.classList.add('btn_modal_registration');
+        btn.textContent = 'Submit';
+        div.classList.add('btn_modal_registration_form');
+
+        div.append(btn);
+        form.append(div);
+        
     }
     
     createButton();

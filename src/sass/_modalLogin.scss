@@ -107,6 +107,12 @@ li{
     left: 0;
     z-index: 10;
 }
+.close_btn_window_login {
+    position: absolute;
+    left: 284px;
+    top: 4px;
+    cursor: pointer;
+}
 
 #input_pas::-webkit-input-placeholder       {text-indent: 0px;   transition: text-indent 0.3s ease;}
 #input_pas::-moz-placeholder                {text-indent: 0px;   transition: text-indent 0.3s ease;}
