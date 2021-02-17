@@ -18,12 +18,34 @@ function closeWindowLogin() {
         callRegistrationWindow();
         actionBtn();
         
-        let closeRegistration = document.querySelector('.close_btn_window_registration');
-        let modalRegistration = document.querySelector('.container_modal');
+        const closeRegistration = document.querySelector('.close_btn_window_registration');
+        const modalRegistration = document.querySelector('.container_modal');
 
 
         closeRegistration.addEventListener('click', (e) => {
             modalRegistration.remove();
+        });
+
+        modalRegistration.addEventListener('click', () => {
+            const inputName = document.querySelector('#input_1'),
+                  inputEmail = document.querySelector('#input_2'),
+                  inputPas = document.querySelector('#input_3'),
+                  inputPasRep = document.querySelector('#input_4'),
+                  user = {
+                    name: inputName.value,
+                    email: inputEmail.value,
+                    password: inputPas.value   
+                  },
+                  arrayPerson = [];
+            
+            localStorage.setItem('objPersons', JSON.stringify(user));
+
+            const newUsers = JSON.parse(localStorage.getItem('objPersons')); 
+            
+            arrayPerson.push(newUsers);
+
+            console.log(arrayPerson)
+            
         });
     });
 

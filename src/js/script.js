@@ -1,6 +1,5 @@
 import createModalLoginWindow from './windowLogin';
 
-
 export const root = document.querySelector('.root');
 let container, inputFile, imgAccount, labelAccount, header;
 
