@@ -11,8 +11,8 @@ function actionBtn() {
         btn.classList.toggle('change_color_button'); //change the style of the button
     });
 
-    btn.addEventListener('click', (e) => {
-        e.preventDefault();
+    btn.addEventListener('click', () => {
+        
         const inputName = document.querySelector('#input_1'),
               inputEmail = document.querySelector('#input_2'),
               inputPas = document.querySelector('#input_3'),

@@ -93,8 +93,8 @@ function createModalLoginWindow () {
     }
 
 
-    linkLogReg.addEventListener('click', (e) => {
-        e.preventDefault();
+    linkLogReg.addEventListener('click', () => {
+        
         createModal();
         createDark();
         createClose();
