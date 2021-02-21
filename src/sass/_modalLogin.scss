@@ -94,6 +94,9 @@ li{
                 color: black;
                 font-family: cursive;
                 cursor: pointer;
+                &:hover {
+                    color: rgb(29, 216, 216);  
+                }
             }
         }
     }

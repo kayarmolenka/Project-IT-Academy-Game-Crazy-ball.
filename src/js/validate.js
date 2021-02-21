@@ -27,8 +27,10 @@ function actionBtn() {
               s4 = document.querySelector('#small_repeat_passwords');
      
         if(inputPas.value !== inputPasRep.value) {
-            i3.classList.add('i_error');
-            i4.classList.add('i_error');
+            i3.classList.add('i_error', 'fa-exclamation-circle');
+            i4.classList.add('i_error', 'fa-exclamation-circle');
+            i3.classList.remove('i_super', 'fa-check-circle');
+            i4.classList.remove('i_super', 'fa-check-circle');
             inputPas.classList.add('input_error');
             inputPasRep.classList.add('input_error');
             s3.classList.add('small_visible');

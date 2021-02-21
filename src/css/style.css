@@ -367,6 +367,10 @@ li .link_login {
   cursor: pointer;
 }
 
+.modal .form_modal .form_forgot .link_registration:hover {
+  color: #1dd8d8;
+}
+
 .dark {
   background-color: rgba(0, 0, 0, 0.7);
   position: fixed;

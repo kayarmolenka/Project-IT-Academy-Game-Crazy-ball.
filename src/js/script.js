@@ -13,7 +13,7 @@ function createHeader () {
 
 createHeader();
 
-function createContentHeader() {
+export function createContentHeader(nameUser) {
     const  div = document.createElement('div'),
            a = document.createElement('a');
 
@@ -24,7 +24,7 @@ function createContentHeader() {
     imgAccount.setAttribute('src', 'img/account_icon.png');
     imgAccount.setAttribute('alt', 'account_img');
     imgAccount.classList.add('img_account');
-    div.textContent = 'Username';
+    div.textContent = nameUser;
     a.classList.add('list_acc');
     inputFile.setAttribute('type', 'file');
     inputFile.setAttribute('id', 'account_file');
@@ -34,9 +34,22 @@ function createContentHeader() {
     labelAccount.append(inputFile, imgAccount);
     a.append(div, labelAccount);
     header.append(a);
+
+
+    inputFile.addEventListener('change', (event) => {
+        const selectedFile = event.target.files[0];
+        const reader = new FileReader();
+        
+        imgAccount.title = selectedFile.name;
+        
+        reader.onload = function(event) {
+            imgAccount.src = event.target.result;
+        };
+        reader.readAsDataURL(selectedFile);
+    })
 }
 
-// createContentHeader();
+
 
 // inputFile.addEventListener('change', (event) => {
 //     const selectedFile = event.target.files[0];

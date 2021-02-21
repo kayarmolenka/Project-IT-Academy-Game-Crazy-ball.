@@ -15,6 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _windowLogin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./windowLogin */ "./src/js/windowLogin.js");
 /* harmony import */ var _windowRegistr_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./windowRegistr.js */ "./src/js/windowRegistr.js");
 /* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./validate.js */ "./src/js/validate.js");
+/* harmony import */ var _script__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./script */ "./src/js/script.js");
 
 
 
@@ -66,41 +67,89 @@ function closeWindowLogin() {
                   inputEmail = document.querySelector('#input_2'),
                   inputPas = document.querySelector('#input_3'),
                   inputPasRep = document.querySelector('#input_4');
-            let pas1Value = inputPas.value.split('');
-            let pas2Value = inputPasRep.value.split('');
+            
 
             inputPasRep.addEventListener('input', () => {
-                for(let i = 0; i < pas1Value.length; i++) {
+                const pas1Value = inputPas.value.split(''),
+                      pas2Value = inputPasRep.value.split(''),
+                      i1 = document.querySelector('#form_modal_icon_1'),
+                      i2 = document.querySelector('#form_modal_icon_2'),
+                      i3 = document.querySelector('#form_modal_icon_3'),
+                      i4 = document.querySelector('#form_modal_icon_4'),
+                      s1 = document.querySelector('#small_name'),
+                      s2 = document.querySelector('#small_email'),
+                      s3 = document.querySelector('#small_password'),
+                      s4 = document.querySelector('#small_repeat_passwords');
+               
+                for(let i = 0; i < pas2Value.length; i++) {
                     if(pas1Value[i] !== pas2Value[i]) {
-                        console.log('Пароли не верны');
+                        i3.classList.add('i_error', 'fa-exclamation-circle');
+                        i4.classList.add('i_error', 'fa-exclamation-circle');
+                        i3.classList.remove('i_super', 'fa-check-circle');
+                        i4.classList.remove('i_super', 'fa-check-circle');
+                        inputPas.classList.add('input_error');
+                        inputPasRep.classList.add('input_error');
+                        s3.classList.add('small_visible');
+                        s4.classList.add('small_visible');
+                        s3.textContent = 'incorrect password';
+                        s4.textContent = 'incorrect password';
                         break;
                     } else {
                         if(pas1Value.length === pas2Value.length && i === pas2Value.length - 1) {
-                            console.log('Пароли верны');
+                            i3.classList.add('i_super');
+                            i4.classList.add('i_super');
+                            inputPas.classList.add('input_success');
+                            inputPasRep.classList.add('input_success');
+                            _windowRegistr_js__WEBPACK_IMPORTED_MODULE_1__.btn.classList.add('btn_success');
+                            _windowRegistr_js__WEBPACK_IMPORTED_MODULE_1__.btn.classList.remove('change_color_button');
+                            i3.classList.remove('i_error', 'fa-exclamation-circle');
+                            i4.classList.remove('i_error', 'fa-exclamation-circle');
+                            s3.classList.remove('small_visible');
+                            s4.classList.remove('small_visible');
                         }
                     }
                 }
-                console.log(pas1Value)
-            console.log(pas2Value)
+                
             });
             
         }
-            
-           
-        
     });
 
     const inputNameLogin = document.querySelector('#input_name'),
           inputPasLogin =  document.querySelector('#input_pas'),
-          btnLodIn =  document.querySelector('.button_registr');
+          btnLodIn =  document.querySelector('.button_registr'),
+          arrayUsersLocalStorage = JSON.parse(localStorage.getItem('arr'));
+    
+    //checking username and password at login
 
-    btnLodIn.addEventListener('click', () => {
-
+     btnLodIn.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        const name = inputNameLogin.value,
+              password = inputPasLogin.value;
+        for (let a of arrayUsersLocalStorage) {
+            if(a.name === name && a.password === password) {
+                _script__WEBPACK_IMPORTED_MODULE_3__.linkLogReg.style.display = 'none';
+                _windowLogin__WEBPACK_IMPORTED_MODULE_0__.modal.remove();
+                _windowLogin__WEBPACK_IMPORTED_MODULE_0__.dark.remove();  
+                console.log(_script__WEBPACK_IMPORTED_MODULE_3__.linkLogReg)
+                ;(0,_script__WEBPACK_IMPORTED_MODULE_3__.createContentHeader)(name)
+                break; 
+            } else if(a.name === name && a.password !== password) {
+                alert('Пароль не верен'); 
+                break; 
+            } else {
+                alert('Вы не зареганы');
+                break; 
+            }
+        }       
+        
     })
 
           console.log(inputNameLogin)
           console.log(inputPasLogin)
           console.log(btnLodIn)
+          console.log(_script__WEBPACK_IMPORTED_MODULE_3__.linkLogReg)
 
 
    
@@ -122,6 +171,7 @@ function closeWindowLogin() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "root": () => (/* binding */ root),
+/* harmony export */   "createContentHeader": () => (/* binding */ createContentHeader),
 /* harmony export */   "linkLogReg": () => (/* binding */ linkLogReg)
 /* harmony export */ });
 /* harmony import */ var _windowLogin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./windowLogin */ "./src/js/windowLogin.js");
@@ -140,7 +190,7 @@ function createHeader () {
 
 createHeader();
 
-function createContentHeader() {
+function createContentHeader(nameUser) {
     const  div = document.createElement('div'),
            a = document.createElement('a');
 
@@ -151,7 +201,7 @@ function createContentHeader() {
     imgAccount.setAttribute('src', 'img/account_icon.png');
     imgAccount.setAttribute('alt', 'account_img');
     imgAccount.classList.add('img_account');
-    div.textContent = 'Username';
+    div.textContent = nameUser;
     a.classList.add('list_acc');
     inputFile.setAttribute('type', 'file');
     inputFile.setAttribute('id', 'account_file');
@@ -161,9 +211,22 @@ function createContentHeader() {
     labelAccount.append(inputFile, imgAccount);
     a.append(div, labelAccount);
     header.append(a);
+
+
+    inputFile.addEventListener('change', (event) => {
+        const selectedFile = event.target.files[0];
+        const reader = new FileReader();
+        
+        imgAccount.title = selectedFile.name;
+        
+        reader.onload = function(event) {
+            imgAccount.src = event.target.result;
+        };
+        reader.readAsDataURL(selectedFile);
+    })
 }
 
-// createContentHeader();
+
 
 // inputFile.addEventListener('change', (event) => {
 //     const selectedFile = event.target.files[0];
@@ -272,8 +335,10 @@ function actionBtn() {
               s4 = document.querySelector('#small_repeat_passwords');
      
         if(inputPas.value !== inputPasRep.value) {
-            i3.classList.add('i_error');
-            i4.classList.add('i_error');
+            i3.classList.add('i_error', 'fa-exclamation-circle');
+            i4.classList.add('i_error', 'fa-exclamation-circle');
+            i3.classList.remove('i_super', 'fa-check-circle');
+            i4.classList.remove('i_super', 'fa-check-circle');
             inputPas.classList.add('input_error');
             inputPasRep.classList.add('input_error');
             s3.classList.add('small_visible');
