@@ -12,7 +12,9 @@ function actionBtn() {
     });
 
     btn.addEventListener('click', () => {
-        
+        // const arrayUsersFromLocalStorage = JSON.parse(localStorage.getItem('arr'));
+        //     console.log(arrayUsersFromLocalStorage)
+
         const inputName = document.querySelector('#input_1'),
               inputEmail = document.querySelector('#input_2'),
               inputPas = document.querySelector('#input_3'),
@@ -44,7 +46,7 @@ function actionBtn() {
             inputPasRep.classList.add('input_success');
             btn.classList.add('btn_success');
             btn.classList.remove('change_color_button');
-        }    
+        } 
     });
 
 }

@@ -338,7 +338,17 @@ li .link_login {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-top: 20px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.modal .form_modal .form_button .message_error_window_login {
+  color: red;
+  font-family: cursive;
+  margin-bottom: 10px;
+  visibility: hidden;
 }
 
 .modal .form_modal .form_button .button_registr {
@@ -355,7 +365,7 @@ li .link_login {
 }
 
 .modal .form_modal .form_forgot {
-  margin-top: 40px;
+  margin-top: 29px;
   text-align: center;
 }
 

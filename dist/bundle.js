@@ -56,17 +56,23 @@ function closeWindowLogin() {
                     password: inputPas.value   
                   },
                   arrayPerson = JSON.parse(localStorage.getItem('arr')) || [];
-                       
-            arrayPerson.push(user);
+            for(let a of arrayPerson) {
+                if(a.email === user.email) {
+                    alert('Пользователь под таким именем уже есть')
+                } else {
+                    arrayPerson.push(user);
+                }
+            }           
               
             localStorage.setItem('arr', JSON.stringify(arrayPerson));
         });
-
+        //checking username and password at registration
         {
             const inputName = document.querySelector('#input_1'),
                   inputEmail = document.querySelector('#input_2'),
                   inputPas = document.querySelector('#input_3'),
                   inputPasRep = document.querySelector('#input_4');
+            
             
 
             inputPasRep.addEventListener('input', () => {
@@ -118,6 +124,7 @@ function closeWindowLogin() {
     const inputNameLogin = document.querySelector('#input_name'),
           inputPasLogin =  document.querySelector('#input_pas'),
           btnLodIn =  document.querySelector('.button_registr'),
+          errorMessage = document.querySelector('.message_error_window_login'),
           arrayUsersLocalStorage = JSON.parse(localStorage.getItem('arr'));
     
     //checking username and password at login
@@ -136,10 +143,11 @@ function closeWindowLogin() {
                 ;(0,_script__WEBPACK_IMPORTED_MODULE_3__.createContentHeader)(name)
                 break; 
             } else if(a.name === name && a.password !== password) {
-                alert('Пароль не верен'); 
+                errorMessage.style.visibility = 'visible';
                 break; 
             } else {
-                alert('Вы не зареганы');
+                errorMessage.style.visibility = 'visible';
+                errorMessage.innerHTML = 'Such user is not registered';
                 break; 
             }
         }       
@@ -150,6 +158,7 @@ function closeWindowLogin() {
           console.log(inputPasLogin)
           console.log(btnLodIn)
           console.log(_script__WEBPACK_IMPORTED_MODULE_3__.linkLogReg)
+          
 
 
    
@@ -320,7 +329,9 @@ function actionBtn() {
     });
 
     _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.btn.addEventListener('click', () => {
-        
+        // const arrayUsersFromLocalStorage = JSON.parse(localStorage.getItem('arr'));
+        //     console.log(arrayUsersFromLocalStorage)
+
         const inputName = document.querySelector('#input_1'),
               inputEmail = document.querySelector('#input_2'),
               inputPas = document.querySelector('#input_3'),
@@ -352,7 +363,7 @@ function actionBtn() {
             inputPasRep.classList.add('input_success');
             _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.btn.classList.add('btn_success');
             _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.btn.classList.remove('change_color_button');
-        }    
+        } 
     });
 
 }
@@ -463,13 +474,16 @@ function createModalLoginWindow () {
     
     function createButton() {
         btn = document.createElement('button');
-        let containerBtn = document.createElement('div'); 
+        const containerBtn = document.createElement('div'),
+              messageError = document.createElement('div');   
 
         containerBtn.classList.add('form_row', 'form_button'); 
         btn.classList.add('button_registr');
         btn.textContent = 'LOG IN';
+        messageError.classList.add('message_error_window_login');
+        messageError.textContent = 'Incorrect password or username';
 
-        containerBtn.appendChild(btn);
+        containerBtn.append(messageError, btn);
         form.appendChild(containerBtn);   
     }
 

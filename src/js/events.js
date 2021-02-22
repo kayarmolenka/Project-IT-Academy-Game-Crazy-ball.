@@ -38,17 +38,23 @@ function closeWindowLogin() {
                     password: inputPas.value   
                   },
                   arrayPerson = JSON.parse(localStorage.getItem('arr')) || [];
-                       
-            arrayPerson.push(user);
+            for(let a of arrayPerson) {
+                if(a.email === user.email) {
+                    alert('Пользователь под таким именем уже есть')
+                } else {
+                    arrayPerson.push(user);
+                }
+            }           
               
             localStorage.setItem('arr', JSON.stringify(arrayPerson));
         });
-
+        //checking username and password at registration
         {
             const inputName = document.querySelector('#input_1'),
                   inputEmail = document.querySelector('#input_2'),
                   inputPas = document.querySelector('#input_3'),
                   inputPasRep = document.querySelector('#input_4');
+            
             
 
             inputPasRep.addEventListener('input', () => {
@@ -100,6 +106,7 @@ function closeWindowLogin() {
     const inputNameLogin = document.querySelector('#input_name'),
           inputPasLogin =  document.querySelector('#input_pas'),
           btnLodIn =  document.querySelector('.button_registr'),
+          errorMessage = document.querySelector('.message_error_window_login'),
           arrayUsersLocalStorage = JSON.parse(localStorage.getItem('arr'));
     
     //checking username and password at login
@@ -118,10 +125,11 @@ function closeWindowLogin() {
                 createContentHeader(name)
                 break; 
             } else if(a.name === name && a.password !== password) {
-                alert('Пароль не верен'); 
+                errorMessage.style.visibility = 'visible';
                 break; 
             } else {
-                alert('Вы не зареганы');
+                errorMessage.style.visibility = 'visible';
+                errorMessage.innerHTML = 'Such user is not registered';
                 break; 
             }
         }       
@@ -132,6 +140,7 @@ function closeWindowLogin() {
           console.log(inputPasLogin)
           console.log(btnLodIn)
           console.log(linkLogReg)
+          
 
 
    

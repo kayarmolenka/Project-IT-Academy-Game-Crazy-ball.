@@ -82,13 +82,16 @@ function createModalLoginWindow () {
     
     function createButton() {
         btn = document.createElement('button');
-        let containerBtn = document.createElement('div'); 
+        const containerBtn = document.createElement('div'),
+              messageError = document.createElement('div');   
 
         containerBtn.classList.add('form_row', 'form_button'); 
         btn.classList.add('button_registr');
         btn.textContent = 'LOG IN';
+        messageError.classList.add('message_error_window_login');
+        messageError.textContent = 'Incorrect password or username';
 
-        containerBtn.appendChild(btn);
+        containerBtn.append(messageError, btn);
         form.appendChild(containerBtn);   
     }
 
