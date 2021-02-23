@@ -88,7 +88,9 @@
                 visibility: hidden;
             }
             .small_visible {
-                visibility: visible;    
+                visibility: visible;
+                color: red;
+                font-family: 'Open Sans', sans-serif;    
             }
         }
         .btn_modal_registration_form {

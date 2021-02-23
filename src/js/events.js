@@ -27,7 +27,7 @@ function closeWindowLogin() {
         });
 
         //localStorage 
-        btnRegistration.addEventListener('click', () => {
+        btnRegistration.addEventListener('click', (e) => {
             const inputName = document.querySelector('#input_1'),
                   inputEmail = document.querySelector('#input_2'),
                   inputPas = document.querySelector('#input_3'),
@@ -37,17 +37,28 @@ function closeWindowLogin() {
                     email: inputEmail.value,
                     password: inputPas.value   
                   },
+                  messageErrorEmail = document.querySelector('#small_email'),
                   arrayPerson = JSON.parse(localStorage.getItem('arr')) || [];
-            for(let a of arrayPerson) {
-                if(a.email === user.email) {
-                    alert('Пользователь под таким именем уже есть')
-                } else {
-                    arrayPerson.push(user);
+            
+            const dataLocal = JSON.parse(localStorage.getItem('arr')),
+                  email = dataLocal.map(element => element.email);
+
+                for(let i = 0; i < email.length; i++) {
+                    if(inputEmail.value === email[i]) {
+                        e.preventDefault();
+                        messageErrorEmail.setAttribute('class', 'small_visible');
+                        messageErrorEmail.textContent = 'This email is already in use';
+                        break;
+                    } else {
+                        console.log('So good')
+                        arrayPerson.push(user);
+                        localStorage.setItem('arr', JSON.stringify(arrayPerson));
+                        break;
+                    }
                 }
-            }           
-              
-            localStorage.setItem('arr', JSON.stringify(arrayPerson));
+
         });
+
         //checking username and password at registration
         {
             const inputName = document.querySelector('#input_1'),

@@ -212,6 +212,8 @@ body .root .container .a_main:hover {
 
 .container_modal .form_registration .form_control .small_visible {
   visibility: visible;
+  color: red;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .container_modal .form_registration .btn_modal_registration_form {
