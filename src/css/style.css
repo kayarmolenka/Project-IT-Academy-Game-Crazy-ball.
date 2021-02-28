@@ -126,6 +126,7 @@ body .root .show {
   color: white;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+  z-index: 20;
 }
 
 .container_modal .close_btn_window_registration {
@@ -610,6 +611,12 @@ li .link_login {
 .modal_game_over .link_exit {
   cursor: pointer;
   margin-bottom: 56px;
+}
+
+.modal_game_over .form_final_points {
+  position: fixed;
+  color: aliceblue;
+  font-family: cursive;
 }
 
 .dark_game_over {

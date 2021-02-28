@@ -20,10 +20,12 @@ function closeWindowLogin() {
         
         const closeRegistration = document.querySelector('.close_btn_window_registration'),
               modalRegistration = document.querySelector('.container_modal'),
-              btnRegistration = document.querySelector('.btn_modal_registration_form');
+              btnRegistration = document.querySelector('.btn_modal_registration_form'),
+              dark2 = document.querySelector('.dark');
 
-        closeRegistration.addEventListener('click', (e) => {
+        closeRegistration.addEventListener('click', () => {
             modalRegistration.remove();
+            dark2.remove(); 
         });
 
         //localStorage 

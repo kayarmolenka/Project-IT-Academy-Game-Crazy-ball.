@@ -89,6 +89,20 @@ function startGame() {
         createModal();
         createDark();
     
+        function createFinalPoints() {
+            const div = document.createElement('div'),
+                  label = document.createElement('label');
+            
+            div.classList.add('form_final_points');
+            label.classList.add('final_points');
+            div.textContent = "Your points: ";
+            label.textContent = `${count}`;
+
+            div.append(label);
+            modal.append(div);
+        }
+        createFinalPoints();
+
         function createLinkReplayAndExit(classIcons, classLink) {
             const i = document.createElement('i'),
                   a = document.createElement('a');  
@@ -100,7 +114,6 @@ function startGame() {
             a.append(i);
             modal.append(a);
         }
-    
         createLinkReplayAndExit('fa-redo-alt', 'link_replay');
         createLinkReplayAndExit('fa-sign-out-alt', 'link_exit');
     }

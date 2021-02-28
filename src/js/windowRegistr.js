@@ -30,7 +30,15 @@ function callRegistrationWindow() {
     }
 
     createForm();
-    
+    let dark2;
+    function createDark() {
+        dark2 = document.createElement('div');
+        dark2.classList.add('dark');
+        document.body.appendChild(dark2);
+    }
+
+    createDark();
+
     function createFormControl (options) {
         let formControl = document.createElement('div'),
             label = document.createElement('label'),

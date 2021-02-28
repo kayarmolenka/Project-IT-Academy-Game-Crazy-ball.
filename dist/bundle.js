@@ -38,10 +38,12 @@ function closeWindowLogin() {
         
         const closeRegistration = document.querySelector('.close_btn_window_registration'),
               modalRegistration = document.querySelector('.container_modal'),
-              btnRegistration = document.querySelector('.btn_modal_registration_form');
+              btnRegistration = document.querySelector('.btn_modal_registration_form'),
+              dark2 = document.querySelector('.dark');
 
-        closeRegistration.addEventListener('click', (e) => {
+        closeRegistration.addEventListener('click', () => {
             modalRegistration.remove();
+            dark2.remove(); 
         });
 
         //localStorage 
@@ -284,6 +286,20 @@ function startGame() {
         createModal();
         createDark();
     
+        function createFinalPoints() {
+            const div = document.createElement('div'),
+                  label = document.createElement('label');
+            
+            div.classList.add('form_final_points');
+            label.classList.add('final_points');
+            div.textContent = "Your points: ";
+            label.textContent = `${count}`;
+
+            div.append(label);
+            modal.append(div);
+        }
+        createFinalPoints();
+
         function createLinkReplayAndExit(classIcons, classLink) {
             const i = document.createElement('i'),
                   a = document.createElement('a');  
@@ -295,7 +311,6 @@ function startGame() {
             a.append(i);
             modal.append(a);
         }
-    
         createLinkReplayAndExit('fa-redo-alt', 'link_replay');
         createLinkReplayAndExit('fa-sign-out-alt', 'link_exit');
     }
@@ -885,7 +900,15 @@ function callRegistrationWindow() {
     }
 
     createForm();
-    
+    let dark2;
+    function createDark() {
+        dark2 = document.createElement('div');
+        dark2.classList.add('dark');
+        document.body.appendChild(dark2);
+    }
+
+    createDark();
+
     function createFormControl (options) {
         let formControl = document.createElement('div'),
             label = document.createElement('label'),
