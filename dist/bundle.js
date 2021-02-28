@@ -195,6 +195,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _script__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./script */ "./src/js/script.js");
 
 
+
+
 function startGame() {
     
     const root = document.querySelector('.root');
@@ -389,20 +391,52 @@ function startGame() {
                                       formCount = document.querySelector('.form_count'),
                                       formCoins = document.querySelector('.form_icons'),
                                       coin = document.querySelectorAll('.coin'),
-                                      bomb = document.querySelectorAll('.bomb');     
+                                      bomb = document.querySelectorAll('.bomb'),
+                                      exit = document.querySelector('.link_exit');
 
-                                replay.addEventListener('click', () => {
+                                
+                                function replayGame() {
+                                    replay.addEventListener('click', () => {
+                                        root.classList.remove('game-zone');
+                                        modal.remove();
+                                        dark.remove();
+                                        pl.remove();
+                                        formCount.remove();
+                                        formCoins.remove();
+                                        coin.forEach(e => e.remove())
+                                        bomb.forEach(e => e.remove())
+                                        startGame();
+                                   
+                                    });
+                                }
+                                replayGame();
+                                                               
+                                exit.addEventListener('click', () => {
                                     root.classList.remove('game-zone');
                                     modal.remove();
                                     dark.remove();
                                     pl.remove();
                                     formCount.remove();
                                     formCoins.remove();
-                                    coin.forEach(e => e.remove())
-                                    bomb.forEach(e => e.remove())
-                                    startGame();
+                                    coin.forEach(e => e.remove());
+                                    bomb.forEach(e => e.remove());
                                     
-                                })
+                                    (0,_script__WEBPACK_IMPORTED_MODULE_0__.createHeader)();
+                                    (0,_script__WEBPACK_IMPORTED_MODULE_0__.createHeaderLoginRegistration)();
+                                    (0,_script__WEBPACK_IMPORTED_MODULE_0__.createContentHeader)();
+                                    (0,_script__WEBPACK_IMPORTED_MODULE_0__.createContainer)();
+                                    (0,_script__WEBPACK_IMPORTED_MODULE_0__.createLink)('Start', 'link_start');
+                                    (0,_script__WEBPACK_IMPORTED_MODULE_0__.createLink)('Record', 'record');
+                                    (0,_script__WEBPACK_IMPORTED_MODULE_0__.createLink)('Help', 'help');
+
+                                    const linkStart = document.querySelector('#link_start');
+                                    linkStart.addEventListener('click', () => {
+                                        _script__WEBPACK_IMPORTED_MODULE_0__.header.remove();
+                                        _script__WEBPACK_IMPORTED_MODULE_0__.container.remove();
+                                        startGame();
+                                        console.log('sds')
+                                    })
+                                });
                             }
                         }     
                 })
@@ -469,8 +503,17 @@ function startGame() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "root": () => (/* binding */ root),
+/* harmony export */   "container": () => (/* binding */ container),
+/* harmony export */   "inputFile": () => (/* binding */ inputFile),
+/* harmony export */   "imgAccount": () => (/* binding */ imgAccount),
+/* harmony export */   "labelAccount": () => (/* binding */ labelAccount),
+/* harmony export */   "header": () => (/* binding */ header),
+/* harmony export */   "createHeader": () => (/* binding */ createHeader),
 /* harmony export */   "createContentHeader": () => (/* binding */ createContentHeader),
 /* harmony export */   "linkLogReg": () => (/* binding */ linkLogReg),
+/* harmony export */   "createHeaderLoginRegistration": () => (/* binding */ createHeaderLoginRegistration),
+/* harmony export */   "createContainer": () => (/* binding */ createContainer),
+/* harmony export */   "createLink": () => (/* binding */ createLink),
 /* harmony export */   "linkStart": () => (/* binding */ linkStart)
 /* harmony export */ });
 /* harmony import */ var _windowLogin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./windowLogin */ "./src/js/windowLogin.js");
@@ -576,8 +619,7 @@ linkStart.addEventListener('click', () => {
     (0,_game__WEBPACK_IMPORTED_MODULE_1__.default)();
 })
 
-console.log(header)
-console.log(container)
+
 
 
 

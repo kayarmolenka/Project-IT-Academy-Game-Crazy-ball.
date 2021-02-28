@@ -1,4 +1,6 @@
-import {linkStart} from './script';
+import {createHeader, createHeaderLoginRegistration, createContainer, createLink, createContentHeader} from './script';
+import {header, container} from './script';
+
 
 function startGame() {
     
@@ -194,20 +196,52 @@ function startGame() {
                                       formCount = document.querySelector('.form_count'),
                                       formCoins = document.querySelector('.form_icons'),
                                       coin = document.querySelectorAll('.coin'),
-                                      bomb = document.querySelectorAll('.bomb');     
+                                      bomb = document.querySelectorAll('.bomb'),
+                                      exit = document.querySelector('.link_exit');
 
-                                replay.addEventListener('click', () => {
+                                
+                                function replayGame() {
+                                    replay.addEventListener('click', () => {
+                                        root.classList.remove('game-zone');
+                                        modal.remove();
+                                        dark.remove();
+                                        pl.remove();
+                                        formCount.remove();
+                                        formCoins.remove();
+                                        coin.forEach(e => e.remove())
+                                        bomb.forEach(e => e.remove())
+                                        startGame();
+                                   
+                                    });
+                                }
+                                replayGame();
+                                                               
+                                exit.addEventListener('click', () => {
                                     root.classList.remove('game-zone');
                                     modal.remove();
                                     dark.remove();
                                     pl.remove();
                                     formCount.remove();
                                     formCoins.remove();
-                                    coin.forEach(e => e.remove())
-                                    bomb.forEach(e => e.remove())
-                                    startGame();
+                                    coin.forEach(e => e.remove());
+                                    bomb.forEach(e => e.remove());
                                     
-                                })
+                                    createHeader();
+                                    createHeaderLoginRegistration();
+                                    createContentHeader();
+                                    createContainer();
+                                    createLink('Start', 'link_start');
+                                    createLink('Record', 'record');
+                                    createLink('Help', 'help');
+
+                                    const linkStart = document.querySelector('#link_start');
+                                    linkStart.addEventListener('click', () => {
+                                        header.remove();
+                                        container.remove();
+                                        startGame();
+                                        console.log('sds')
+                                    })
+                                });
                             }
                         }     
                 })

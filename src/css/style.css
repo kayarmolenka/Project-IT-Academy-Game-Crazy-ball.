@@ -96,6 +96,14 @@ body .root .container .a_main:hover {
   background-color: #5eb7f1;
 }
 
+body .root .hidden {
+  visibility: hidden;
+}
+
+body .root .show {
+  visibility: visible;
+}
+
 @font-face {
   font-family: 'Mystical Woods Smooth Script';
   src: url("../fonts/MysticalWoodsSmoothScript.eot");

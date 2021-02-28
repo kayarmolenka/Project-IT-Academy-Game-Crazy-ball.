@@ -3,9 +3,9 @@ import startGame from './game';
 
 
 export const root = document.querySelector('.root');
-let container, inputFile, imgAccount, labelAccount, header;
+export let container, inputFile, imgAccount, labelAccount, header;
 
-function createHeader () {
+export function createHeader () {
     header = document.createElement('header');
        
     header.classList.add('header');
@@ -52,7 +52,7 @@ export function createContentHeader(nameUser) {
 }
 
 export let linkLogReg;
-function createHeaderLoginRegistration() {
+export function createHeaderLoginRegistration() {
     linkLogReg = document.createElement('a');
 
     linkLogReg.classList.add('link_log_reg');
@@ -67,7 +67,7 @@ createModalLoginWindow();
 
 
 
-function createContainer() {
+export function createContainer() {
     container = document.createElement('div');
     container.classList.add('container');
     root.appendChild(container);
@@ -75,7 +75,7 @@ function createContainer() {
 
 createContainer();
 
-function createLink (title, id) {
+export function createLink (title, id) {
     let a = document.createElement('a');
 
     a.innerHTML = title;
@@ -99,8 +99,7 @@ linkStart.addEventListener('click', () => {
     startGame();
 })
 
-console.log(header)
-console.log(container)
+
 
 
 
