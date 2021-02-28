@@ -1,0 +1,99 @@
+.game-zone {
+    font-family: Arial;
+    position: relative;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    background: url(../img/game/Bg000.png) center center / cover no-repeat;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    .form_count {
+        font-size: large;
+        font-family: cursive;
+        color: snow;
+    }
+    .player {
+        position: absolute;
+        width: 78px;
+        height: 77px;
+        background: url(../img/game/ball.png) center center / cover no-repeat;
+    }
+    .coin {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background: url(../img/game/coins.png) center center / cover no-repeat;
+    }
+    .bomb {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background: url(../img/game/bomb.png) center center / cover no-repeat;
+    }
+    .info {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        width: 300px;
+        padding: 20px;
+        border: 2px solid #000;
+    }
+    .points{
+        display: block;
+    }
+    .icon_heart {
+        width: 30px;
+        height: 30px;
+        font-size: 25px;
+        color: red;
+    }
+}
+   
+.modal_game_over {
+    border-radius: 5px;
+    width: 545px;
+    height: 457px;
+    background: white;
+    z-index: 20;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px;
+    background: url(../img/game/game_over.jpg) center center / cover no-repeat;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    .fa-redo-alt {
+        color: beige;
+        font-size: 30px;
+    }
+        
+    .fa-sign-out-alt {
+        color: beige;
+        font-size: 36px;
+    }
+        
+    .link_replay {
+        cursor: pointer;
+        margin-bottom: 56px;
+    }
+        
+    .link_exit {
+        cursor: pointer;
+        margin-bottom: 56px;
+    }
+}
+    
+.dark_game_over {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    opacity: 1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+}
+    

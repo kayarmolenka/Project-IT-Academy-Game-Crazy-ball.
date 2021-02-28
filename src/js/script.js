@@ -1,4 +1,6 @@
 import createModalLoginWindow from './windowLogin';
+import startGame from './game';
+
 
 export const root = document.querySelector('.root');
 let container, inputFile, imgAccount, labelAccount, header;
@@ -49,19 +51,6 @@ export function createContentHeader(nameUser) {
     })
 }
 
-
-
-// inputFile.addEventListener('change', (event) => {
-//     const selectedFile = event.target.files[0];
-//     const reader = new FileReader();
-    
-//     imgAccount.title = selectedFile.name;
-      
-//     reader.onload = function(event) {
-//         imgAccount.src = event.target.result;
-//     };
-//     reader.readAsDataURL(selectedFile);
-// })
 export let linkLogReg;
 function createHeaderLoginRegistration() {
     linkLogReg = document.createElement('a');
@@ -99,18 +88,20 @@ function createLink (title, id) {
 createLink('Start', 'link_start');
 createLink('Record', 'record');
 createLink('Help', 'help');
-// createLink('registration', 'log_in');
-// createLink('LOGIN', 'log');
 
 
-// const linkLog = document.querySelector('#log');
-// const linkReg = document.querySelector('#log_in');
 
-// linkLogReg.addEventListener('click', () => {
-//     callRegistrationWindow();
-//     actionBtn();                                    window registration
+export const linkStart = document.querySelector('#link_start');
 
-// });
+linkStart.addEventListener('click', () => {
+    header.remove();
+    container.remove();
+    startGame();
+})
+
+console.log(header)
+console.log(container)
+
 
 
 
