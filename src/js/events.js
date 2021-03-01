@@ -27,7 +27,7 @@ function closeWindowLogin() {
             modalRegistration.remove();
             dark2.remove(); 
         });
-
+        
         //localStorage 
         btnRegistration.addEventListener('click', (e) => {
             const inputName = document.querySelector('#input_1'),
@@ -40,27 +40,44 @@ function closeWindowLogin() {
                     password: inputPas.value   
                   },
                   messageErrorEmail = document.querySelector('#small_email'),
+                  messageErrorName = document.querySelector('#small_name'),
                   arrayPerson = JSON.parse(localStorage.getItem('arr')) || [];
             
-            const dataLocal = JSON.parse(localStorage.getItem('arr')),
-                  email = dataLocal.map(element => element.email);
-
-                for(let i = 0; i < email.length; i++) {
-                    if(inputEmail.value === email[i]) {
-                        e.preventDefault();
-                        messageErrorEmail.setAttribute('class', 'small_visible');
-                        messageErrorEmail.textContent = 'This email is already in use';
-                        break;
-                    } else {
-                        console.log('So good')
-                        arrayPerson.push(user);
-                        localStorage.setItem('arr', JSON.stringify(arrayPerson));
-                        break;
-                    }
-                }
-
-        });
-
+                  const dataLocal = JSON.parse(localStorage.getItem('arr'));
+                  if(dataLocal == null) {
+                    arrayPerson.push(user);
+                    localStorage.setItem('arr', JSON.stringify(arrayPerson));
+                  } else {
+                        const email = dataLocal.map(element => element.email);
+                        const name = dataLocal.map(element => element.name);
+                        
+                        for(let i = 0; i < email.length; i++) {
+                            if(inputName.value === '' || inputEmail.value === '' || inputPas.value === '' || inputPasRep.value === '') {
+                                messageErrorName.setAttribute('class', 'small_visible');
+                                messageErrorName.textContent = 'You did not fill in all the fields';
+                                break;
+                            } else if(inputName.value === name[i] && inputEmail.value === email[i]) {
+                                messageErrorName.setAttribute('class', 'small_visible');
+                                messageErrorName.textContent = 'This name is already in use';
+                                messageErrorEmail.setAttribute('class', 'small_visible');
+                                messageErrorEmail.textContent = 'This email is already in use';
+                                break;
+                            } else if(inputName.value === name[i]) {
+                                messageErrorName.setAttribute('class', 'small_visible');
+                                messageErrorName.textContent = 'This name is already in use';
+                                break;
+                            } else if(inputEmail.value === email[i]) {
+                                messageErrorEmail.setAttribute('class', 'small_visible');
+                                messageErrorEmail.textContent = 'This email is already in use';
+                                break;
+                            } else {
+                                arrayPerson.push(user);
+                                localStorage.setItem('arr', JSON.stringify(arrayPerson));
+                                break;
+                            }
+                        }
+                  }
+        })                      
         //checking username and password at registration
         {
             const inputName = document.querySelector('#input_1'),
@@ -68,8 +85,6 @@ function closeWindowLogin() {
                   inputPas = document.querySelector('#input_3'),
                   inputPasRep = document.querySelector('#input_4');
             
-            
-
             inputPasRep.addEventListener('input', () => {
                 const pas1Value = inputPas.value.split(''),
                       pas2Value = inputPasRep.value.split(''),
@@ -126,40 +141,36 @@ function closeWindowLogin() {
 
      btnLodIn.addEventListener('click', (e) => {
         e.preventDefault();
+        const dataLocal = JSON.parse(localStorage.getItem('arr')),
+              password = dataLocal.map(element => element.password),
+              name = dataLocal.map(element => element.name);
         
-        const name = inputNameLogin.value,
-              password = inputPasLogin.value;
-        for (let a of arrayUsersLocalStorage) {
-            if(a.name === name && a.password === password) {
+        for(let i = 0; i < password.length; i++) {  
+            if(inputNameLogin.value === '' || inputPasLogin.value === '') {
+                errorMessage.style.visibility = 'visible';
+                errorMessage.innerHTML = 'You did not fill in the fields';
+            } else if(name[i] === inputNameLogin.value && password[i] === inputPasLogin.value) {
                 linkLogReg.style.display = 'none';
                 modal.remove();
                 dark.remove();  
-                console.log(linkLogReg)
-                createContentHeader(name)
-                break; 
-            } else if(a.name === name && a.password !== password) {
+                createContentHeader(name[i])
+            } else if(name[i] === inputNameLogin.value && password[i] !== inputPasLogin.value) {
                 errorMessage.style.visibility = 'visible';
-                break; 
+                errorMessage.innerHTML = 'Password incorrect';
+                break;
             } else {
                 errorMessage.style.visibility = 'visible';
                 errorMessage.innerHTML = 'Such user is not registered';
-                break; 
             }
-        }       
-        
+        }
     })
-
-          console.log(inputNameLogin)
-          console.log(inputPasLogin)
-          console.log(btnLodIn)
-          console.log(linkLogReg)
-          
-
-
-   
-          
-
-   
+    // close modal window click of dark
+    window.addEventListener('click', e => {
+        if(e.target === dark) {
+            modal.remove();
+            dark.remove(); 
+        }
+    })
 }
 
 export default closeWindowLogin;

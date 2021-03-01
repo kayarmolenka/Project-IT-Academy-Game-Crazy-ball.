@@ -16,11 +16,10 @@ function startGame() {
             y: 400,
             step: 10,
             run: false,
-            side: 1, //1 (right), 2 (left),
+            side: 1, 
             w: 78,
             h: 77
         },
-        bulletSpeed = 10,
         ints = {
             plRun: false,
             run: false,
@@ -116,6 +115,23 @@ function startGame() {
         }
         createLinkReplayAndExit('fa-redo-alt', 'link_replay');
         createLinkReplayAndExit('fa-sign-out-alt', 'link_exit');
+
+        function savePointLocalStorage() {
+            const finalPoints = JSON.parse(localStorage.getItem('points')) || [],
+              objPlayer = {
+                points: `${count}` 
+              }
+        
+            if(finalPoints == null) {
+                finalPoints.push(objPlayer);
+                localStorage.setItem('points', JSON.stringify(finalPoints));
+            } else {
+                const pointsNew = JSON.parse(localStorage.getItem('points'))
+                pointsNew.push(objPlayer);
+                localStorage.setItem('points', JSON.stringify(pointsNew));
+            }
+        }
+        savePointLocalStorage();        
     }
             
     function intervals() {

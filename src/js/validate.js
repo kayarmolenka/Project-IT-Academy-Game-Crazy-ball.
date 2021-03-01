@@ -12,9 +12,6 @@ function actionBtn() {
     });
 
     btn.addEventListener('click', () => {
-        // const arrayUsersFromLocalStorage = JSON.parse(localStorage.getItem('arr'));
-        //     console.log(arrayUsersFromLocalStorage)
-
         const inputName = document.querySelector('#input_1'),
               inputEmail = document.querySelector('#input_2'),
               inputPas = document.querySelector('#input_3'),
@@ -28,7 +25,7 @@ function actionBtn() {
               s3 = document.querySelector('#small_password'),
               s4 = document.querySelector('#small_repeat_passwords');
      
-        if(inputPas.value !== inputPasRep.value) {
+        if(inputPas.value !== inputPasRep.value || inputPas.value === '' || inputPasRep.value === '') {
             i3.classList.add('i_error', 'fa-exclamation-circle');
             i4.classList.add('i_error', 'fa-exclamation-circle');
             i3.classList.remove('i_super', 'fa-check-circle');

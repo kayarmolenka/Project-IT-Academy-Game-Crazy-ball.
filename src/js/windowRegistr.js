@@ -1,10 +1,7 @@
 import {root} from './script.js';
 
-
-
 export let btn;
 export let form;
-
 
 function callRegistrationWindow() {
 
@@ -118,9 +115,18 @@ function callRegistrationWindow() {
     
     createButton();
 
-
-
     root.append(containerModal);
+    
+    function closeModalRegistration() {
+        const d = document.querySelector('.dark'),
+              m = document.querySelector('.container_modal');
+    
+        d.addEventListener('click', () => {
+            d.remove(); 
+            m.remove(); 
+        })
+    }
+    closeModalRegistration();
 }
 
 export default callRegistrationWindow;

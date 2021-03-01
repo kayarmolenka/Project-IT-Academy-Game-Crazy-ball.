@@ -45,7 +45,7 @@ function closeWindowLogin() {
             modalRegistration.remove();
             dark2.remove(); 
         });
-
+        
         //localStorage 
         btnRegistration.addEventListener('click', (e) => {
             const inputName = document.querySelector('#input_1'),
@@ -58,27 +58,44 @@ function closeWindowLogin() {
                     password: inputPas.value   
                   },
                   messageErrorEmail = document.querySelector('#small_email'),
+                  messageErrorName = document.querySelector('#small_name'),
                   arrayPerson = JSON.parse(localStorage.getItem('arr')) || [];
             
-            const dataLocal = JSON.parse(localStorage.getItem('arr')),
-                  email = dataLocal.map(element => element.email);
-
-                for(let i = 0; i < email.length; i++) {
-                    if(inputEmail.value === email[i]) {
-                        e.preventDefault();
-                        messageErrorEmail.setAttribute('class', 'small_visible');
-                        messageErrorEmail.textContent = 'This email is already in use';
-                        break;
-                    } else {
-                        console.log('So good')
-                        arrayPerson.push(user);
-                        localStorage.setItem('arr', JSON.stringify(arrayPerson));
-                        break;
-                    }
-                }
-
-        });
-
+                  const dataLocal = JSON.parse(localStorage.getItem('arr'));
+                  if(dataLocal == null) {
+                    arrayPerson.push(user);
+                    localStorage.setItem('arr', JSON.stringify(arrayPerson));
+                  } else {
+                        const email = dataLocal.map(element => element.email);
+                        const name = dataLocal.map(element => element.name);
+                        
+                        for(let i = 0; i < email.length; i++) {
+                            if(inputName.value === '' || inputEmail.value === '' || inputPas.value === '' || inputPasRep.value === '') {
+                                messageErrorName.setAttribute('class', 'small_visible');
+                                messageErrorName.textContent = 'You did not fill in all the fields';
+                                break;
+                            } else if(inputName.value === name[i] && inputEmail.value === email[i]) {
+                                messageErrorName.setAttribute('class', 'small_visible');
+                                messageErrorName.textContent = 'This name is already in use';
+                                messageErrorEmail.setAttribute('class', 'small_visible');
+                                messageErrorEmail.textContent = 'This email is already in use';
+                                break;
+                            } else if(inputName.value === name[i]) {
+                                messageErrorName.setAttribute('class', 'small_visible');
+                                messageErrorName.textContent = 'This name is already in use';
+                                break;
+                            } else if(inputEmail.value === email[i]) {
+                                messageErrorEmail.setAttribute('class', 'small_visible');
+                                messageErrorEmail.textContent = 'This email is already in use';
+                                break;
+                            } else {
+                                arrayPerson.push(user);
+                                localStorage.setItem('arr', JSON.stringify(arrayPerson));
+                                break;
+                            }
+                        }
+                  }
+        })                      
         //checking username and password at registration
         {
             const inputName = document.querySelector('#input_1'),
@@ -86,8 +103,6 @@ function closeWindowLogin() {
                   inputPas = document.querySelector('#input_3'),
                   inputPasRep = document.querySelector('#input_4');
             
-            
-
             inputPasRep.addEventListener('input', () => {
                 const pas1Value = inputPas.value.split(''),
                       pas2Value = inputPasRep.value.split(''),
@@ -144,40 +159,36 @@ function closeWindowLogin() {
 
      btnLodIn.addEventListener('click', (e) => {
         e.preventDefault();
+        const dataLocal = JSON.parse(localStorage.getItem('arr')),
+              password = dataLocal.map(element => element.password),
+              name = dataLocal.map(element => element.name);
         
-        const name = inputNameLogin.value,
-              password = inputPasLogin.value;
-        for (let a of arrayUsersLocalStorage) {
-            if(a.name === name && a.password === password) {
+        for(let i = 0; i < password.length; i++) {  
+            if(inputNameLogin.value === '' || inputPasLogin.value === '') {
+                errorMessage.style.visibility = 'visible';
+                errorMessage.innerHTML = 'You did not fill in the fields';
+            } else if(name[i] === inputNameLogin.value && password[i] === inputPasLogin.value) {
                 _script__WEBPACK_IMPORTED_MODULE_3__.linkLogReg.style.display = 'none';
                 _windowLogin__WEBPACK_IMPORTED_MODULE_0__.modal.remove();
                 _windowLogin__WEBPACK_IMPORTED_MODULE_0__.dark.remove();  
-                console.log(_script__WEBPACK_IMPORTED_MODULE_3__.linkLogReg)
-                ;(0,_script__WEBPACK_IMPORTED_MODULE_3__.createContentHeader)(name)
-                break; 
-            } else if(a.name === name && a.password !== password) {
+                (0,_script__WEBPACK_IMPORTED_MODULE_3__.createContentHeader)(name[i])
+            } else if(name[i] === inputNameLogin.value && password[i] !== inputPasLogin.value) {
                 errorMessage.style.visibility = 'visible';
-                break; 
+                errorMessage.innerHTML = 'Password incorrect';
+                break;
             } else {
                 errorMessage.style.visibility = 'visible';
                 errorMessage.innerHTML = 'Such user is not registered';
-                break; 
             }
-        }       
-        
+        }
     })
-
-          console.log(inputNameLogin)
-          console.log(inputPasLogin)
-          console.log(btnLodIn)
-          console.log(_script__WEBPACK_IMPORTED_MODULE_3__.linkLogReg)
-          
-
-
-   
-          
-
-   
+    // close modal window click of dark
+    window.addEventListener('click', e => {
+        if(e.target === _windowLogin__WEBPACK_IMPORTED_MODULE_0__.dark) {
+            _windowLogin__WEBPACK_IMPORTED_MODULE_0__.modal.remove();
+            _windowLogin__WEBPACK_IMPORTED_MODULE_0__.dark.remove(); 
+        }
+    })
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (closeWindowLogin);
@@ -213,11 +224,10 @@ function startGame() {
             y: 400,
             step: 10,
             run: false,
-            side: 1, //1 (right), 2 (left),
+            side: 1, 
             w: 78,
             h: 77
         },
-        bulletSpeed = 10,
         ints = {
             plRun: false,
             run: false,
@@ -313,6 +323,23 @@ function startGame() {
         }
         createLinkReplayAndExit('fa-redo-alt', 'link_replay');
         createLinkReplayAndExit('fa-sign-out-alt', 'link_exit');
+
+        function savePointLocalStorage() {
+            const finalPoints = JSON.parse(localStorage.getItem('points')) || [],
+              objPlayer = {
+                points: `${count}` 
+              }
+        
+            if(finalPoints == null) {
+                finalPoints.push(objPlayer);
+                localStorage.setItem('points', JSON.stringify(finalPoints));
+            } else {
+                const pointsNew = JSON.parse(localStorage.getItem('points'))
+                pointsNew.push(objPlayer);
+                localStorage.setItem('points', JSON.stringify(pointsNew));
+            }
+        }
+        savePointLocalStorage();        
     }
             
     function intervals() {
@@ -668,9 +695,6 @@ function actionBtn() {
     });
 
     _windowRegistr_js__WEBPACK_IMPORTED_MODULE_0__.btn.addEventListener('click', () => {
-        // const arrayUsersFromLocalStorage = JSON.parse(localStorage.getItem('arr'));
-        //     console.log(arrayUsersFromLocalStorage)
-
         const inputName = document.querySelector('#input_1'),
               inputEmail = document.querySelector('#input_2'),
               inputPas = document.querySelector('#input_3'),
@@ -684,7 +708,7 @@ function actionBtn() {
               s3 = document.querySelector('#small_password'),
               s4 = document.querySelector('#small_repeat_passwords');
      
-        if(inputPas.value !== inputPasRep.value) {
+        if(inputPas.value !== inputPasRep.value || inputPas.value === '' || inputPasRep.value === '') {
             i3.classList.add('i_error', 'fa-exclamation-circle');
             i4.classList.add('i_error', 'fa-exclamation-circle');
             i3.classList.remove('i_super', 'fa-check-circle');
@@ -870,11 +894,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _script_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./script.js */ "./src/js/script.js");
 
 
-
-
 let btn;
 let form;
-
 
 function callRegistrationWindow() {
 
@@ -988,9 +1009,18 @@ function callRegistrationWindow() {
     
     createButton();
 
-
-
     _script_js__WEBPACK_IMPORTED_MODULE_0__.root.append(containerModal);
+    
+    function closeModalRegistration() {
+        const d = document.querySelector('.dark'),
+              m = document.querySelector('.container_modal');
+    
+        d.addEventListener('click', () => {
+            d.remove(); 
+            m.remove(); 
+        })
+    }
+    closeModalRegistration();
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (callRegistrationWindow);
