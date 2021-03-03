@@ -5,6 +5,8 @@ import {btn, form} from './windowRegistr.js';
 import {createContentHeader} from './script';
 import {linkLogReg} from './script';
 
+export let saveNamePlayer;
+
 function closeWindowLogin() {
     
     closeBtn.addEventListener('click', () => {
@@ -29,7 +31,7 @@ function closeWindowLogin() {
         });
         
         //localStorage 
-        btnRegistration.addEventListener('click', (e) => {
+        btnRegistration.addEventListener('click', e => {
             const inputName = document.querySelector('#input_1'),
                   inputEmail = document.querySelector('#input_2'),
                   inputPas = document.querySelector('#input_3'),
@@ -138,8 +140,9 @@ function closeWindowLogin() {
           arrayUsersLocalStorage = JSON.parse(localStorage.getItem('arr'));
     
     //checking username and password at login
+    
 
-     btnLodIn.addEventListener('click', (e) => {
+     btnLodIn.addEventListener('click', e => {
         e.preventDefault();
         const dataLocal = JSON.parse(localStorage.getItem('arr')),
               password = dataLocal.map(element => element.password),
@@ -152,8 +155,9 @@ function closeWindowLogin() {
             } else if(name[i] === inputNameLogin.value && password[i] === inputPasLogin.value) {
                 linkLogReg.style.display = 'none';
                 modal.remove();
-                dark.remove();  
-                createContentHeader(name[i])
+                dark.remove();
+                createContentHeader(name[i]);
+                saveNamePlayer = name[i];
             } else if(name[i] === inputNameLogin.value && password[i] !== inputPasLogin.value) {
                 errorMessage.style.visibility = 'visible';
                 errorMessage.innerHTML = 'Password incorrect';

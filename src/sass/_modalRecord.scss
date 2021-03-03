@@ -1,0 +1,50 @@
+.modal_record {
+    border-radius: 5px;
+    width: 474px;
+    height: 625px;
+    background: white;
+    z-index: 20;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px;
+    background: -webkit-linear-gradient(top, #75FFFF, #14D008);
+    .header_record {
+        text-align: center;
+        font-family: cursive;
+        font-size: -webkit-xxx-large;
+        border-bottom-style: solid;
+    }
+    .close_btn_window_record {
+        position: fixed;
+        top: 6px;
+        right: 8px;
+        font-size: x-large;
+        cursor: pointer;
+    }
+    .container_record {
+        display: grid;
+        grid-template-rows: repeat(11,1fr);
+        grid-template-columns: 1fr 1fr 1fr;
+        .cel_record {
+            font-family: cursive;
+            font-size: 30px;
+        }
+    }
+}
+.dark_record {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    opacity: 1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+}
+
+
+
+
+

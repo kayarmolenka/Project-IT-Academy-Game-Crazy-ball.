@@ -10,6 +10,7 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "saveNamePlayer": () => (/* binding */ saveNamePlayer),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _windowLogin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./windowLogin */ "./src/js/windowLogin.js");
@@ -22,6 +23,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+let saveNamePlayer;
 
 function closeWindowLogin() {
     
@@ -47,7 +50,7 @@ function closeWindowLogin() {
         });
         
         //localStorage 
-        btnRegistration.addEventListener('click', (e) => {
+        btnRegistration.addEventListener('click', e => {
             const inputName = document.querySelector('#input_1'),
                   inputEmail = document.querySelector('#input_2'),
                   inputPas = document.querySelector('#input_3'),
@@ -156,8 +159,9 @@ function closeWindowLogin() {
           arrayUsersLocalStorage = JSON.parse(localStorage.getItem('arr'));
     
     //checking username and password at login
+    
 
-     btnLodIn.addEventListener('click', (e) => {
+     btnLodIn.addEventListener('click', e => {
         e.preventDefault();
         const dataLocal = JSON.parse(localStorage.getItem('arr')),
               password = dataLocal.map(element => element.password),
@@ -170,8 +174,9 @@ function closeWindowLogin() {
             } else if(name[i] === inputNameLogin.value && password[i] === inputPasLogin.value) {
                 _script__WEBPACK_IMPORTED_MODULE_3__.linkLogReg.style.display = 'none';
                 _windowLogin__WEBPACK_IMPORTED_MODULE_0__.modal.remove();
-                _windowLogin__WEBPACK_IMPORTED_MODULE_0__.dark.remove();  
-                (0,_script__WEBPACK_IMPORTED_MODULE_3__.createContentHeader)(name[i])
+                _windowLogin__WEBPACK_IMPORTED_MODULE_0__.dark.remove();
+                (0,_script__WEBPACK_IMPORTED_MODULE_3__.createContentHeader)(name[i]);
+                saveNamePlayer = name[i];
             } else if(name[i] === inputNameLogin.value && password[i] !== inputPasLogin.value) {
                 errorMessage.style.visibility = 'visible';
                 errorMessage.innerHTML = 'Password incorrect';
@@ -206,6 +211,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _script__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./script */ "./src/js/script.js");
+/* harmony import */ var _events__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./events */ "./src/js/events.js");
 
 
 
@@ -235,7 +241,8 @@ function startGame() {
             bom: false,	
             
         },
-        countLife = 3;
+        countLife = 3,
+        speedAppearElements = 1000;
     
     function randomInteger(min, max) {
         let rand = min - 0.5 + Math.random() * (max - min + 1);
@@ -326,17 +333,18 @@ function startGame() {
 
         function savePointLocalStorage() {
             const finalPoints = JSON.parse(localStorage.getItem('points')) || [],
-              objPlayer = {
-                points: `${count}` 
-              }
+                  objPlayer = {
+                    name: _events__WEBPACK_IMPORTED_MODULE_1__.saveNamePlayer,  
+                    points: `${count}` 
+                  },
+                  dataPoints = JSON.parse(localStorage.getItem('points'));
         
-            if(finalPoints == null) {
+            if(dataPoints == null) {
                 finalPoints.push(objPlayer);
                 localStorage.setItem('points', JSON.stringify(finalPoints));
             } else {
-                const pointsNew = JSON.parse(localStorage.getItem('points'))
-                pointsNew.push(objPlayer);
-                localStorage.setItem('points', JSON.stringify(pointsNew));
+                finalPoints.push(objPlayer);
+                localStorage.setItem('points', JSON.stringify(finalPoints));
             }
         }
         savePointLocalStorage();        
@@ -476,7 +484,6 @@ function startGame() {
                                         _script__WEBPACK_IMPORTED_MODULE_0__.header.remove();
                                         _script__WEBPACK_IMPORTED_MODULE_0__.container.remove();
                                         startGame();
-                                        console.log('sds')
                                     })
                                 });
                             }
@@ -487,12 +494,12 @@ function startGame() {
         ints.icons = setInterval(() => {
             gameZone.innerHTML += `<div class="coin" style="top: 0; left: ${randomInteger(0, gameZone.getBoundingClientRect().width - player.w)}px;"></div>`;
             player.el = document.querySelector('.player');
-        }, 1000);
+        }, speedAppearElements);
     
         ints.bom =   setInterval(() => {
             gameZone.innerHTML += `<div class="bomb" style="top: 0; left: ${randomInteger(0, gameZone.getBoundingClientRect().width - player.w)}px;"></div>`;
             player.el = document.querySelector('.player');
-        }, 1000);
+        }, speedAppearElements);
     }
     
     function controllers() {
@@ -556,10 +563,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "createHeaderLoginRegistration": () => (/* binding */ createHeaderLoginRegistration),
 /* harmony export */   "createContainer": () => (/* binding */ createContainer),
 /* harmony export */   "createLink": () => (/* binding */ createLink),
-/* harmony export */   "linkStart": () => (/* binding */ linkStart)
+/* harmony export */   "linkStart": () => (/* binding */ linkStart),
+/* harmony export */   "linkRecord": () => (/* binding */ linkRecord)
 /* harmony export */ });
 /* harmony import */ var _windowLogin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./windowLogin */ "./src/js/windowLogin.js");
 /* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game */ "./src/js/game.js");
+/* harmony import */ var _windowRecord__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./windowRecord */ "./src/js/windowRecord.js");
+
 
 
 
@@ -589,6 +599,7 @@ function createContentHeader(nameUser) {
     imgAccount.setAttribute('alt', 'account_img');
     imgAccount.classList.add('img_account');
     div.textContent = nameUser;
+    div.classList.add('name_player');
     a.classList.add('list_acc');
     inputFile.setAttribute('type', 'file');
     inputFile.setAttribute('id', 'account_file');
@@ -598,17 +609,15 @@ function createContentHeader(nameUser) {
     labelAccount.append(inputFile, imgAccount);
     a.append(div, labelAccount);
     header.append(a);
+    
 
-
-    inputFile.addEventListener('change', (event) => {
-        const selectedFile = event.target.files[0];
+    inputFile.addEventListener('change', e => {
+        const selectedFile = e.target.files[0];
         const reader = new FileReader();
         
         imgAccount.title = selectedFile.name;
         
-        reader.onload = function(event) {
-            imgAccount.src = event.target.result;
-        };
+        reader.onload = e => imgAccount.src = e.target.result;
         reader.readAsDataURL(selectedFile);
     })
 }
@@ -659,10 +668,13 @@ linkStart.addEventListener('click', () => {
     header.remove();
     container.remove();
     (0,_game__WEBPACK_IMPORTED_MODULE_1__.default)();
-})
+});
 
+const linkRecord = document.querySelector('#record');
 
-
+linkRecord.addEventListener('click', () => {
+    (0,_windowRecord__WEBPACK_IMPORTED_MODULE_2__.default)();
+});
 
 
 
@@ -876,6 +888,95 @@ function createModalLoginWindow () {
 
 
 
+
+/***/ }),
+
+/***/ "./src/js/windowRecord.js":
+/*!********************************!*\
+  !*** ./src/js/windowRecord.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _script__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./script */ "./src/js/script.js");
+
+
+
+function createWindowRecord() {
+
+    let modal, containerRecord;
+
+    function createModal() {
+        modal = document.createElement('div');
+        modal.classList.add('modal_record');
+        _script__WEBPACK_IMPORTED_MODULE_0__.root.appendChild(modal);
+    }
+
+    function createDark() {
+        const dark = document.createElement('div');
+        dark.classList.add('dark_record');
+        _script__WEBPACK_IMPORTED_MODULE_0__.root.appendChild(dark);
+    }
+    function createClose() {
+        const closeBtn = document.createElement('i');
+        closeBtn.classList.add('fas', 'fa-times', 'close_btn_window_record');
+        modal.appendChild(closeBtn);
+    }
+
+    createModal();
+    createDark();
+    createClose();
+
+    function createHeader() {
+        const div = document.createElement('div');
+        div.classList.add('header_record');
+        div.textContent = 'List of records';
+        modal.appendChild(div);
+    }
+    createHeader();
+
+    function createContainerRecord() {
+        containerRecord = document.createElement('div');
+        containerRecord.classList.add('container_record');
+        modal.appendChild(containerRecord);
+    }
+    createContainerRecord();
+
+    function createManyDiv(text) {
+        const div = document.createElement('div');
+        div.classList.add('cel_record');
+        div.textContent = text;
+        containerRecord.appendChild(div);
+    }
+
+    createManyDiv('№');
+    createManyDiv('Name');
+    createManyDiv('Points');
+
+    function closeWindowRecord() {
+        const d = document.querySelector('.dark_record'),
+        m = document.querySelector('.modal_record'),
+        iconsClose = document.querySelector('.close_btn_window_record');
+
+        window.addEventListener('click', e => {
+            if(e.target === d) {
+                m.remove();
+                d.remove(); 
+            }
+        });
+        
+        iconsClose.addEventListener('click', () => {
+            m.remove();
+            d.remove();  
+        })
+    }
+    closeWindowRecord();
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createWindowRecord);
 
 /***/ }),
 

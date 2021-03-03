@@ -1,6 +1,6 @@
 import {createHeader, createHeaderLoginRegistration, createContainer, createLink, createContentHeader} from './script';
 import {header, container} from './script';
-
+import {saveNamePlayer} from './events';
 
 function startGame() {
     
@@ -27,7 +27,8 @@ function startGame() {
             bom: false,	
             
         },
-        countLife = 3;
+        countLife = 3,
+        speedAppearElements = 1000;
     
     function randomInteger(min, max) {
         let rand = min - 0.5 + Math.random() * (max - min + 1);
@@ -118,17 +119,18 @@ function startGame() {
 
         function savePointLocalStorage() {
             const finalPoints = JSON.parse(localStorage.getItem('points')) || [],
-              objPlayer = {
-                points: `${count}` 
-              }
+                  objPlayer = {
+                    name: saveNamePlayer,  
+                    points: `${count}` 
+                  },
+                  dataPoints = JSON.parse(localStorage.getItem('points'));
         
-            if(finalPoints == null) {
+            if(dataPoints == null) {
                 finalPoints.push(objPlayer);
                 localStorage.setItem('points', JSON.stringify(finalPoints));
             } else {
-                const pointsNew = JSON.parse(localStorage.getItem('points'))
-                pointsNew.push(objPlayer);
-                localStorage.setItem('points', JSON.stringify(pointsNew));
+                finalPoints.push(objPlayer);
+                localStorage.setItem('points', JSON.stringify(finalPoints));
             }
         }
         savePointLocalStorage();        
@@ -268,7 +270,6 @@ function startGame() {
                                         header.remove();
                                         container.remove();
                                         startGame();
-                                        console.log('sds')
                                     })
                                 });
                             }
@@ -279,12 +280,12 @@ function startGame() {
         ints.icons = setInterval(() => {
             gameZone.innerHTML += `<div class="coin" style="top: 0; left: ${randomInteger(0, gameZone.getBoundingClientRect().width - player.w)}px;"></div>`;
             player.el = document.querySelector('.player');
-        }, 1000);
+        }, speedAppearElements);
     
         ints.bom =   setInterval(() => {
             gameZone.innerHTML += `<div class="bomb" style="top: 0; left: ${randomInteger(0, gameZone.getBoundingClientRect().width - player.w)}px;"></div>`;
             player.el = document.querySelector('.player');
-        }, 1000);
+        }, speedAppearElements);
     }
     
     function controllers() {

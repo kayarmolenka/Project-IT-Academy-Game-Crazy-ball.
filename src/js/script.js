@@ -1,5 +1,6 @@
 import createModalLoginWindow from './windowLogin';
 import startGame from './game';
+import createWindowRecord from './windowRecord';
 
 
 export const root = document.querySelector('.root');
@@ -27,6 +28,7 @@ export function createContentHeader(nameUser) {
     imgAccount.setAttribute('alt', 'account_img');
     imgAccount.classList.add('img_account');
     div.textContent = nameUser;
+    div.classList.add('name_player');
     a.classList.add('list_acc');
     inputFile.setAttribute('type', 'file');
     inputFile.setAttribute('id', 'account_file');
@@ -36,17 +38,15 @@ export function createContentHeader(nameUser) {
     labelAccount.append(inputFile, imgAccount);
     a.append(div, labelAccount);
     header.append(a);
+    
 
-
-    inputFile.addEventListener('change', (event) => {
-        const selectedFile = event.target.files[0];
+    inputFile.addEventListener('change', e => {
+        const selectedFile = e.target.files[0];
         const reader = new FileReader();
         
         imgAccount.title = selectedFile.name;
         
-        reader.onload = function(event) {
-            imgAccount.src = event.target.result;
-        };
+        reader.onload = e => imgAccount.src = e.target.result;
         reader.readAsDataURL(selectedFile);
     })
 }
@@ -97,10 +97,13 @@ linkStart.addEventListener('click', () => {
     header.remove();
     container.remove();
     startGame();
-})
+});
 
+export const linkRecord = document.querySelector('#record');
 
-
+linkRecord.addEventListener('click', () => {
+    createWindowRecord();
+});
 
 
 
