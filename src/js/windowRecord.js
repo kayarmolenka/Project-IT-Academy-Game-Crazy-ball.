@@ -57,9 +57,6 @@ function createWindowRecord() {
     if(getPointsLocalStorage) {
         getPointsLocalStorage.sort((a,b) => b.points - a.points).forEach(person => {
             if(Object.keys(person).length > 1) {
-                // if(person.points < 999) {
-                //     person.points = `0${person.points}`;
-                // }
                 createManyDiv(num);
                 createManyDiv(person.name);
                 createManyDiv(person.points);

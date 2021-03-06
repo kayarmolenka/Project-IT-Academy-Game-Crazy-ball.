@@ -4,14 +4,14 @@
     min-height: 100vh;
     padding: 0;
     margin: 0;
-    background: url(../img/game/Bg000.png) center center / cover no-repeat;
+    background: url(../img/game/bg.jpg) center center / cover no-repeat;
     font-weight: bold;
     display: flex;
     justify-content: space-between;
     .form_count {
         font-size: large;
         font-family: cursive;
-        color: snow;
+        color: black;
     }
     .player {
         position: absolute;

@@ -1,7 +1,7 @@
 import createModalLoginWindow from './windowLogin';
 import startGame from './game';
 import createWindowRecord from './windowRecord';
-
+import createModalWindowDeveloper from './windowDeveloper';
 
 export const root = document.querySelector('.root');
 export let container, inputFile, imgAccount, labelAccount, header;
@@ -87,7 +87,7 @@ export function createLink (title, id) {
 
 createLink('Start', 'link_start');
 createLink('Record', 'record');
-createLink('Help', 'help');
+createLink('Developer', 'link_developer');
 
 
 
@@ -105,5 +105,9 @@ linkRecord.addEventListener('click', () => {
     createWindowRecord();
 });
 
+export const linkDeveloper = document.querySelector('#link_developer');
 
 
+linkDeveloper.addEventListener('click', () => {
+    createModalWindowDeveloper();
+})

@@ -584,11 +584,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "createContainer": () => (/* binding */ createContainer),
 /* harmony export */   "createLink": () => (/* binding */ createLink),
 /* harmony export */   "linkStart": () => (/* binding */ linkStart),
-/* harmony export */   "linkRecord": () => (/* binding */ linkRecord)
+/* harmony export */   "linkRecord": () => (/* binding */ linkRecord),
+/* harmony export */   "linkDeveloper": () => (/* binding */ linkDeveloper)
 /* harmony export */ });
 /* harmony import */ var _windowLogin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./windowLogin */ "./src/js/windowLogin.js");
 /* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game */ "./src/js/game.js");
 /* harmony import */ var _windowRecord__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./windowRecord */ "./src/js/windowRecord.js");
+/* harmony import */ var _windowDeveloper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./windowDeveloper */ "./src/js/windowDeveloper.js");
 
 
 
@@ -678,7 +680,7 @@ function createLink (title, id) {
 
 createLink('Start', 'link_start');
 createLink('Record', 'record');
-createLink('Help', 'help');
+createLink('Developer', 'link_developer');
 
 
 
@@ -696,9 +698,12 @@ linkRecord.addEventListener('click', () => {
     (0,_windowRecord__WEBPACK_IMPORTED_MODULE_2__.default)();
 });
 
+const linkDeveloper = document.querySelector('#link_developer');
 
 
-
+linkDeveloper.addEventListener('click', () => {
+    (0,_windowDeveloper__WEBPACK_IMPORTED_MODULE_3__.default)();
+})
 
 /***/ }),
 
@@ -764,6 +769,154 @@ function actionBtn() {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (actionBtn);
+
+
+/***/ }),
+
+/***/ "./src/js/windowDeveloper.js":
+/*!***********************************!*\
+  !*** ./src/js/windowDeveloper.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _script__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./script */ "./src/js/script.js");
+
+
+
+function createModalWindowDeveloper() {
+    let modal;
+
+    class Page {
+        constructor(name) {
+            this.name = name;  
+        }
+     
+        createModal() {
+            modal = document.createElement('div');
+            modal.classList.add('modal_developer');
+            _script__WEBPACK_IMPORTED_MODULE_0__.root.appendChild(modal);
+        }
+     
+        createDark() {
+            const dark = document.createElement('div');
+            dark.classList.add('dark_developer');
+            _script__WEBPACK_IMPORTED_MODULE_0__.root.appendChild(dark);
+        }
+        
+        createClose() {
+            const closeBtn = document.createElement('i');
+            closeBtn.classList.add('fas', 'fa-times', 'close_btn_window_developer');
+            modal.appendChild(closeBtn);
+        }
+
+        createTitle(classTitle, textTitle, placeTitle) {
+            const h1 = document.createElement('h1');
+            h1.classList.add(classTitle);
+            h1.textContent = textTitle;
+
+            placeTitle.appendChild(h1);
+        } 
+
+        createWrapper(classWrapeer, textWrapper) {
+            const div = document.createElement('div');
+            div.classList.add(classWrapeer);
+            div.textContent = textWrapper;
+
+            modal.appendChild(div);
+        }
+    }
+    
+    class Developer {
+        constructor(name) {
+            this.name = name;
+        }
+      
+        createAvatar(place) {
+            fetch('https://api.github.com/users/kayarmolenka')
+            .then(response => response.json())
+            .then(user => {
+                let img = document.createElement('img');
+                img.src = user.avatar_url;
+                img.alt = 'avatar';
+                img.className = 'avatar';
+                place.appendChild(img);
+            })
+        }
+
+        createName(place) {
+            fetch('https://api.github.com/users/kayarmolenka')
+            .then(response => response.json())
+            .then(user => new Promise((res, rej) => {
+                let p = document.createElement('p');
+                p.textContent = user.name;
+                p.className = 'name_user';
+                place.appendChild(p);
+            }));
+        }
+
+        createLinkRepository(place) {
+        fetch('https://api.github.com/users/kayarmolenka/repos')
+            .then(response => response.json())
+            .then(response => response.map(repos => repos.html_url))
+            .then(url => new Promise((res, rej) => {
+                let p = document.createElement('p');
+                p.className = 'text_repos';
+                p.innerHTML = `If you want to see the code of the game, you can go to the <a class="link_repos_dom" href="${url[0]}" target="_blank">repository</a>.`
+                place.appendChild(p);
+            }));
+        }
+    
+    }
+    
+    const pageDeveloper = new Page();
+    
+    pageDeveloper.createModal();
+    pageDeveloper.createDark();
+    pageDeveloper.createClose();
+
+    pageDeveloper.createWrapper('title_developer');
+    const titleDeveloper = document.querySelector('.title_developer');
+    pageDeveloper.createTitle('header_developer', 'Application developer', titleDeveloper);
+    
+    pageDeveloper.createWrapper('image_developer');
+    const imageDeveloper = document.querySelector('.image_developer');
+    
+    pageDeveloper.createWrapper('name_developer');
+    const nameDeveloper = document.querySelector('.name_developer');
+    pageDeveloper.createWrapper('repos_developer');
+    const reposDeveloper = document.querySelector('.repos_developer');
+    
+    
+    const kosty = new Developer();
+    kosty.createAvatar(imageDeveloper);
+    kosty.createName(nameDeveloper);
+    kosty.createLinkRepository(reposDeveloper);
+
+    function closeWindowDeveloper() {
+        const d = document.querySelector('.dark_developer'),
+        m = document.querySelector('.modal_developer'),
+        iconsClose = document.querySelector('.close_btn_window_developer');
+
+        window.addEventListener('click', e => {
+            if(e.target === d) {
+                m.remove();
+                d.remove(); 
+            }
+        });
+        
+        iconsClose.addEventListener('click', () => {
+            m.remove();
+            d.remove();  
+        })
+    }
+    closeWindowDeveloper();
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createModalWindowDeveloper);
 
 
 /***/ }),
@@ -981,9 +1134,6 @@ function createWindowRecord() {
     if(getPointsLocalStorage) {
         getPointsLocalStorage.sort((a,b) => b.points - a.points).forEach(person => {
             if(Object.keys(person).length > 1) {
-                // if(person.points < 999) {
-                //     person.points = `0${person.points}`;
-                // }
                 createManyDiv(num);
                 createManyDiv(person.name);
                 createManyDiv(person.points);
