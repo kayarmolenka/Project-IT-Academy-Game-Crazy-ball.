@@ -701,9 +701,7 @@ linkRecord.addEventListener('click', () => {
 const linkDeveloper = document.querySelector('#link_developer');
 
 
-linkDeveloper.addEventListener('click', () => {
-    (0,_windowDeveloper__WEBPACK_IMPORTED_MODULE_3__.default)();
-})
+linkDeveloper.addEventListener('click', () => (0,_windowDeveloper__WEBPACK_IMPORTED_MODULE_3__.default)());
 
 /***/ }),
 

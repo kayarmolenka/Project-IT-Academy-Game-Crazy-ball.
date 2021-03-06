@@ -108,6 +108,4 @@ linkRecord.addEventListener('click', () => {
 export const linkDeveloper = document.querySelector('#link_developer');
 
 
-linkDeveloper.addEventListener('click', () => {
-    createModalWindowDeveloper();
-})
+linkDeveloper.addEventListener('click', () => createModalWindowDeveloper());
