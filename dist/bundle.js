@@ -332,19 +332,39 @@ function startGame() {
         createLinkReplayAndExit('fa-sign-out-alt', 'link_exit');
 
         function savePointLocalStorage() {
-            const finalPoints = JSON.parse(localStorage.getItem('points')) || [],
-                  objPlayer = {
-                    name: _events__WEBPACK_IMPORTED_MODULE_1__.saveNamePlayer,  
-                    points: `${count}` 
-                  },
-                  dataPoints = JSON.parse(localStorage.getItem('points'));
-        
-            if(dataPoints == null) {
+            let finalPoints;
+            finalPoints = JSON.parse(localStorage.getItem('points')) || [];
+            const dataPoints = JSON.parse(localStorage.getItem('points'));
+            let objPlayer = {
+                name: _events__WEBPACK_IMPORTED_MODULE_1__.saveNamePlayer,  
+                points: `${count}` 
+                };
+
+            let players = JSON.parse(localStorage.getItem('players')) || [];
+
+            if(players == false) {
+                players.push(objPlayer.name)
+                localStorage.setItem('players', JSON.stringify(players));
+            }
+
+            if(finalPoints == false) {
                 finalPoints.push(objPlayer);
                 localStorage.setItem('points', JSON.stringify(finalPoints));
             } else {
-                finalPoints.push(objPlayer);
-                localStorage.setItem('points', JSON.stringify(finalPoints));
+                if(!players.includes(objPlayer.name)) {
+                    finalPoints.push(objPlayer);
+                    localStorage.setItem('points', JSON.stringify(finalPoints));
+                    players.push(objPlayer.name)
+                    localStorage.setItem('players', JSON.stringify(players));
+                } else {
+                    finalPoints.forEach((user, index) => {
+                        if(user.name === objPlayer.name && Number(user.points) < Number(objPlayer.points)) {
+                            finalPoints.splice(index, 1);
+                            finalPoints.push(objPlayer);
+                            localStorage.setItem('points', JSON.stringify(finalPoints));
+                        } 
+                    }) 
+                }
             }
         }
         savePointLocalStorage();        
@@ -956,6 +976,21 @@ function createWindowRecord() {
     createManyDiv('Name');
     createManyDiv('Points');
 
+    let num = 1;
+    const getPointsLocalStorage = JSON.parse(localStorage.getItem('points'));
+    if(getPointsLocalStorage) {
+        getPointsLocalStorage.sort((a,b) => b.points - a.points).forEach(person => {
+            if(Object.keys(person).length > 1) {
+                // if(person.points < 999) {
+                //     person.points = `0${person.points}`;
+                // }
+                createManyDiv(num);
+                createManyDiv(person.name);
+                createManyDiv(person.points);
+                num++;
+            }
+        });
+    }
     function closeWindowRecord() {
         const d = document.querySelector('.dark_record'),
         m = document.querySelector('.modal_record'),

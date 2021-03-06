@@ -118,19 +118,39 @@ function startGame() {
         createLinkReplayAndExit('fa-sign-out-alt', 'link_exit');
 
         function savePointLocalStorage() {
-            const finalPoints = JSON.parse(localStorage.getItem('points')) || [],
-                  objPlayer = {
-                    name: saveNamePlayer,  
-                    points: `${count}` 
-                  },
-                  dataPoints = JSON.parse(localStorage.getItem('points'));
-        
-            if(dataPoints == null) {
+            let finalPoints;
+            finalPoints = JSON.parse(localStorage.getItem('points')) || [];
+            const dataPoints = JSON.parse(localStorage.getItem('points'));
+            let objPlayer = {
+                name: saveNamePlayer,  
+                points: `${count}` 
+                };
+
+            let players = JSON.parse(localStorage.getItem('players')) || [];
+
+            if(players == false) {
+                players.push(objPlayer.name)
+                localStorage.setItem('players', JSON.stringify(players));
+            }
+
+            if(finalPoints == false) {
                 finalPoints.push(objPlayer);
                 localStorage.setItem('points', JSON.stringify(finalPoints));
             } else {
-                finalPoints.push(objPlayer);
-                localStorage.setItem('points', JSON.stringify(finalPoints));
+                if(!players.includes(objPlayer.name)) {
+                    finalPoints.push(objPlayer);
+                    localStorage.setItem('points', JSON.stringify(finalPoints));
+                    players.push(objPlayer.name)
+                    localStorage.setItem('players', JSON.stringify(players));
+                } else {
+                    finalPoints.forEach((user, index) => {
+                        if(user.name === objPlayer.name && Number(user.points) < Number(objPlayer.points)) {
+                            finalPoints.splice(index, 1);
+                            finalPoints.push(objPlayer);
+                            localStorage.setItem('points', JSON.stringify(finalPoints));
+                        } 
+                    }) 
+                }
             }
         }
         savePointLocalStorage();        
