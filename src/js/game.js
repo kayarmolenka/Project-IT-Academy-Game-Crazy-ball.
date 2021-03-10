@@ -1,6 +1,9 @@
 import {createHeader, createHeaderLoginRegistration, createContainer, createLink, createContentHeader} from './script';
 import {header, container} from './script';
 import {saveNamePlayer} from './events';
+import {createModalLoginWindow} from './windowLogin';
+import createWindowRecord from './windowRecord';
+import createModalWindowDeveloper from './windowDeveloper';
 
 function startGame() {
     
@@ -13,7 +16,7 @@ function startGame() {
         player = {
             el: false,
             x: 500,
-            y: 400,
+            y: gameZone.getBoundingClientRect().bottom - 230,
             step: 10,
             run: false,
             side: 1, 
@@ -283,7 +286,7 @@ function startGame() {
                                     createContainer();
                                     createLink('Start', 'link_start');
                                     createLink('Record', 'record');
-                                    createLink('Help', 'help');
+                                    createLink('Developer', 'link_developer');
 
                                     const linkStart = document.querySelector('#link_start');
                                     linkStart.addEventListener('click', () => {
@@ -291,6 +294,16 @@ function startGame() {
                                         container.remove();
                                         startGame();
                                     })
+
+                                    const linkRecord = document.querySelector('#record');
+
+                                    linkRecord.addEventListener('click', () => {
+                                        createWindowRecord();
+                                    });
+
+                                    const linkDeveloper = document.querySelector('#link_developer');
+
+                                    linkDeveloper.addEventListener('click', () => createModalWindowDeveloper());
                                 });
                             }
                         }     
@@ -302,7 +315,7 @@ function startGame() {
             player.el = document.querySelector('.player');
         }, speedAppearElements);
     
-        ints.bom =   setInterval(() => {
+        ints.bom = setInterval(() => {
             gameZone.innerHTML += `<div class="bomb" style="top: 0; left: ${randomInteger(0, gameZone.getBoundingClientRect().width - player.w)}px;"></div>`;
             player.el = document.querySelector('.player');
         }, speedAppearElements);

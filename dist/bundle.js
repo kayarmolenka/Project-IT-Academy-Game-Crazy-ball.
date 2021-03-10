@@ -212,6 +212,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _script__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./script */ "./src/js/script.js");
 /* harmony import */ var _events__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./events */ "./src/js/events.js");
+/* harmony import */ var _windowLogin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./windowLogin */ "./src/js/windowLogin.js");
+/* harmony import */ var _windowRecord__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./windowRecord */ "./src/js/windowRecord.js");
+/* harmony import */ var _windowDeveloper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./windowDeveloper */ "./src/js/windowDeveloper.js");
+
+
+
 
 
 
@@ -227,7 +233,7 @@ function startGame() {
         player = {
             el: false,
             x: 500,
-            y: 400,
+            y: gameZone.getBoundingClientRect().bottom - 230,
             step: 10,
             run: false,
             side: 1, 
@@ -497,7 +503,7 @@ function startGame() {
                                     (0,_script__WEBPACK_IMPORTED_MODULE_0__.createContainer)();
                                     (0,_script__WEBPACK_IMPORTED_MODULE_0__.createLink)('Start', 'link_start');
                                     (0,_script__WEBPACK_IMPORTED_MODULE_0__.createLink)('Record', 'record');
-                                    (0,_script__WEBPACK_IMPORTED_MODULE_0__.createLink)('Help', 'help');
+                                    (0,_script__WEBPACK_IMPORTED_MODULE_0__.createLink)('Developer', 'link_developer');
 
                                     const linkStart = document.querySelector('#link_start');
                                     linkStart.addEventListener('click', () => {
@@ -505,6 +511,16 @@ function startGame() {
                                         _script__WEBPACK_IMPORTED_MODULE_0__.container.remove();
                                         startGame();
                                     })
+
+                                    const linkRecord = document.querySelector('#record');
+
+                                    linkRecord.addEventListener('click', () => {
+                                        (0,_windowRecord__WEBPACK_IMPORTED_MODULE_3__.default)();
+                                    });
+
+                                    const linkDeveloper = document.querySelector('#link_developer');
+
+                                    linkDeveloper.addEventListener('click', () => (0,_windowDeveloper__WEBPACK_IMPORTED_MODULE_4__.default)());
                                 });
                             }
                         }     
@@ -516,7 +532,7 @@ function startGame() {
             player.el = document.querySelector('.player');
         }, speedAppearElements);
     
-        ints.bom =   setInterval(() => {
+        ints.bom = setInterval(() => {
             gameZone.innerHTML += `<div class="bomb" style="top: 0; left: ${randomInteger(0, gameZone.getBoundingClientRect().width - player.w)}px;"></div>`;
             player.el = document.querySelector('.player');
         }, speedAppearElements);
@@ -702,6 +718,9 @@ const linkDeveloper = document.querySelector('#link_developer');
 
 
 linkDeveloper.addEventListener('click', () => (0,_windowDeveloper__WEBPACK_IMPORTED_MODULE_3__.default)());
+
+
+
 
 /***/ }),
 
