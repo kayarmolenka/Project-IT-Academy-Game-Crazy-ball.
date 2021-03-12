@@ -1,7 +1,6 @@
 import {linkLogReg} from './script';
 import closeWindowLogin from './events';
 
-
 export let linkRegistration;
 export let closeBtn;
 export let modal;
@@ -29,7 +28,6 @@ function createModalLoginWindow () {
         closeBtn.classList.add('fas', 'fa-times', 'close_btn_window_login');
         modal.appendChild(closeBtn);
     }
-
 
     function createHeaderModal() {
         let headerModal = document.createElement('div');
@@ -78,7 +76,6 @@ function createModalLoginWindow () {
         form.appendChild(divAnhor);
         
     }
-
     
     function createButton() {
         btn = document.createElement('button');
@@ -95,7 +92,6 @@ function createModalLoginWindow () {
         form.appendChild(containerBtn);   
     }
 
-
     linkLogReg.addEventListener('click', () => {
         
         createModal();
@@ -109,9 +105,6 @@ function createModalLoginWindow () {
         createButton();
         createLinkForgot();
         closeWindowLogin();
-        
-        
-        
     });
 }
 

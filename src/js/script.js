@@ -62,10 +62,7 @@ export function createHeaderLoginRegistration() {
 }
 
 createHeaderLoginRegistration();
-
 createModalLoginWindow();
-
-
 
 export function createContainer() {
     container = document.createElement('div');
@@ -89,8 +86,6 @@ createLink('Start', 'link_start');
 createLink('Record', 'record');
 createLink('Developer', 'link_developer');
 
-
-
 export const linkStart = document.querySelector('#link_start');
 
 linkStart.addEventListener('click', () => {
@@ -106,7 +101,6 @@ linkRecord.addEventListener('click', () => {
 });
 
 export const linkDeveloper = document.querySelector('#link_developer');
-
 
 linkDeveloper.addEventListener('click', () => createModalWindowDeveloper());
 

@@ -45,40 +45,40 @@ function closeWindowLogin() {
                   messageErrorName = document.querySelector('#small_name'),
                   arrayPerson = JSON.parse(localStorage.getItem('arr')) || [];
             
-                  const dataLocal = JSON.parse(localStorage.getItem('arr'));
-                  if(dataLocal == null) {
+                const dataLocal = JSON.parse(localStorage.getItem('arr'));
+                if(dataLocal == null) {
                     arrayPerson.push(user);
                     localStorage.setItem('arr', JSON.stringify(arrayPerson));
-                  } else {
-                        const email = dataLocal.map(element => element.email);
-                        const name = dataLocal.map(element => element.name);
-                        
-                        for(let i = 0; i < email.length; i++) {
-                            if(inputName.value === '' || inputEmail.value === '' || inputPas.value === '' || inputPasRep.value === '') {
-                                messageErrorName.setAttribute('class', 'small_visible');
-                                messageErrorName.textContent = 'You did not fill in all the fields';
-                                break;
-                            } else if(inputName.value === name[i] && inputEmail.value === email[i]) {
-                                messageErrorName.setAttribute('class', 'small_visible');
-                                messageErrorName.textContent = 'This name is already in use';
-                                messageErrorEmail.setAttribute('class', 'small_visible');
-                                messageErrorEmail.textContent = 'This email is already in use';
-                                break;
-                            } else if(inputName.value === name[i]) {
-                                messageErrorName.setAttribute('class', 'small_visible');
-                                messageErrorName.textContent = 'This name is already in use';
-                                break;
-                            } else if(inputEmail.value === email[i]) {
-                                messageErrorEmail.setAttribute('class', 'small_visible');
-                                messageErrorEmail.textContent = 'This email is already in use';
-                                break;
-                            } else {
-                                arrayPerson.push(user);
-                                localStorage.setItem('arr', JSON.stringify(arrayPerson));
-                                break;
-                            }
+                } else {
+                    const email = dataLocal.map(element => element.email);
+                    const name = dataLocal.map(element => element.name);
+                    
+                    for(let i = 0; i < email.length; i++) {
+                        if(inputName.value === '' || inputEmail.value === '' || inputPas.value === '' || inputPasRep.value === '') {
+                            messageErrorName.setAttribute('class', 'small_visible');
+                            messageErrorName.textContent = 'You did not fill in all the fields';
+                            break;
+                        } else if(inputName.value === name[i] && inputEmail.value === email[i]) {
+                            messageErrorName.setAttribute('class', 'small_visible');
+                            messageErrorName.textContent = 'This name is already in use';
+                            messageErrorEmail.setAttribute('class', 'small_visible');
+                            messageErrorEmail.textContent = 'This email is already in use';
+                            break;
+                        } else if(inputName.value === name[i]) {
+                            messageErrorName.setAttribute('class', 'small_visible');
+                            messageErrorName.textContent = 'This name is already in use';
+                            break;
+                        } else if(inputEmail.value === email[i]) {
+                            messageErrorEmail.setAttribute('class', 'small_visible');
+                            messageErrorEmail.textContent = 'This email is already in use';
+                            break;
+                        } else {
+                            arrayPerson.push(user);
+                            localStorage.setItem('arr', JSON.stringify(arrayPerson));
+                            break;
                         }
-                  }
+                    }
+                }
         })                      
         //checking username and password at registration
         {
@@ -129,7 +129,6 @@ function closeWindowLogin() {
                 }
                 
             });
-            
         }
     });
 
@@ -141,7 +140,6 @@ function closeWindowLogin() {
     
     //checking username and password at login
     
-
      btnLodIn.addEventListener('click', e => {
         e.preventDefault();
         const dataLocal = JSON.parse(localStorage.getItem('arr')),

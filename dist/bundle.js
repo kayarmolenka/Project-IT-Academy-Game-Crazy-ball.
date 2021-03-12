@@ -64,40 +64,40 @@ function closeWindowLogin() {
                   messageErrorName = document.querySelector('#small_name'),
                   arrayPerson = JSON.parse(localStorage.getItem('arr')) || [];
             
-                  const dataLocal = JSON.parse(localStorage.getItem('arr'));
-                  if(dataLocal == null) {
+                const dataLocal = JSON.parse(localStorage.getItem('arr'));
+                if(dataLocal == null) {
                     arrayPerson.push(user);
                     localStorage.setItem('arr', JSON.stringify(arrayPerson));
-                  } else {
-                        const email = dataLocal.map(element => element.email);
-                        const name = dataLocal.map(element => element.name);
-                        
-                        for(let i = 0; i < email.length; i++) {
-                            if(inputName.value === '' || inputEmail.value === '' || inputPas.value === '' || inputPasRep.value === '') {
-                                messageErrorName.setAttribute('class', 'small_visible');
-                                messageErrorName.textContent = 'You did not fill in all the fields';
-                                break;
-                            } else if(inputName.value === name[i] && inputEmail.value === email[i]) {
-                                messageErrorName.setAttribute('class', 'small_visible');
-                                messageErrorName.textContent = 'This name is already in use';
-                                messageErrorEmail.setAttribute('class', 'small_visible');
-                                messageErrorEmail.textContent = 'This email is already in use';
-                                break;
-                            } else if(inputName.value === name[i]) {
-                                messageErrorName.setAttribute('class', 'small_visible');
-                                messageErrorName.textContent = 'This name is already in use';
-                                break;
-                            } else if(inputEmail.value === email[i]) {
-                                messageErrorEmail.setAttribute('class', 'small_visible');
-                                messageErrorEmail.textContent = 'This email is already in use';
-                                break;
-                            } else {
-                                arrayPerson.push(user);
-                                localStorage.setItem('arr', JSON.stringify(arrayPerson));
-                                break;
-                            }
+                } else {
+                    const email = dataLocal.map(element => element.email);
+                    const name = dataLocal.map(element => element.name);
+                    
+                    for(let i = 0; i < email.length; i++) {
+                        if(inputName.value === '' || inputEmail.value === '' || inputPas.value === '' || inputPasRep.value === '') {
+                            messageErrorName.setAttribute('class', 'small_visible');
+                            messageErrorName.textContent = 'You did not fill in all the fields';
+                            break;
+                        } else if(inputName.value === name[i] && inputEmail.value === email[i]) {
+                            messageErrorName.setAttribute('class', 'small_visible');
+                            messageErrorName.textContent = 'This name is already in use';
+                            messageErrorEmail.setAttribute('class', 'small_visible');
+                            messageErrorEmail.textContent = 'This email is already in use';
+                            break;
+                        } else if(inputName.value === name[i]) {
+                            messageErrorName.setAttribute('class', 'small_visible');
+                            messageErrorName.textContent = 'This name is already in use';
+                            break;
+                        } else if(inputEmail.value === email[i]) {
+                            messageErrorEmail.setAttribute('class', 'small_visible');
+                            messageErrorEmail.textContent = 'This email is already in use';
+                            break;
+                        } else {
+                            arrayPerson.push(user);
+                            localStorage.setItem('arr', JSON.stringify(arrayPerson));
+                            break;
                         }
-                  }
+                    }
+                }
         })                      
         //checking username and password at registration
         {
@@ -148,7 +148,6 @@ function closeWindowLogin() {
                 }
                 
             });
-            
         }
     });
 
@@ -160,7 +159,6 @@ function closeWindowLogin() {
     
     //checking username and password at login
     
-
      btnLodIn.addEventListener('click', e => {
         e.preventDefault();
         const dataLocal = JSON.parse(localStorage.getItem('arr')),
@@ -381,7 +379,7 @@ function startGame() {
                 if (player.run) {
                     switch (player.side) {
                         case 1: // Right
-                            if (player.x < gameZone.getBoundingClientRect().right - player.w - 2) {
+                            if (player.x < gameZone.getBoundingClientRect().right - player.w - 10) {
                                 player.x += player.step;
                                 player.el.style.left = `${player.x}px`;
                             }
@@ -397,8 +395,8 @@ function startGame() {
         }, fps);
     
         ints.run = setInterval(() => {
-            let enemies = document.querySelectorAll('.coin');
-                enemies.forEach((coin) => {
+            let coins = document.querySelectorAll('.coin');
+                coins.forEach((coin) => {
                             if (coin.getBoundingClientRect().bottom >= gameZone.getBoundingClientRect().height - 100) {
                                 coin.parentNode.removeChild(coin);
                             } else {
@@ -671,10 +669,7 @@ function createHeaderLoginRegistration() {
 }
 
 createHeaderLoginRegistration();
-
 (0,_windowLogin__WEBPACK_IMPORTED_MODULE_0__.default)();
-
-
 
 function createContainer() {
     container = document.createElement('div');
@@ -698,8 +693,6 @@ createLink('Start', 'link_start');
 createLink('Record', 'record');
 createLink('Developer', 'link_developer');
 
-
-
 const linkStart = document.querySelector('#link_start');
 
 linkStart.addEventListener('click', () => {
@@ -715,7 +708,6 @@ linkRecord.addEventListener('click', () => {
 });
 
 const linkDeveloper = document.querySelector('#link_developer');
-
 
 linkDeveloper.addEventListener('click', () => (0,_windowDeveloper__WEBPACK_IMPORTED_MODULE_3__.default)());
 
@@ -958,7 +950,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 let linkRegistration;
 let closeBtn;
 let modal;
@@ -986,7 +977,6 @@ function createModalLoginWindow () {
         closeBtn.classList.add('fas', 'fa-times', 'close_btn_window_login');
         modal.appendChild(closeBtn);
     }
-
 
     function createHeaderModal() {
         let headerModal = document.createElement('div');
@@ -1035,7 +1025,6 @@ function createModalLoginWindow () {
         form.appendChild(divAnhor);
         
     }
-
     
     function createButton() {
         btn = document.createElement('button');
@@ -1052,7 +1041,6 @@ function createModalLoginWindow () {
         form.appendChild(containerBtn);   
     }
 
-
     _script__WEBPACK_IMPORTED_MODULE_0__.linkLogReg.addEventListener('click', () => {
         
         createModal();
@@ -1066,9 +1054,6 @@ function createModalLoginWindow () {
         createButton();
         createLinkForgot();
         (0,_events__WEBPACK_IMPORTED_MODULE_1__.default)();
-        
-        
-        
     });
 }
 

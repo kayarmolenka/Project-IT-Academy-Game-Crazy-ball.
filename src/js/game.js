@@ -164,7 +164,7 @@ function startGame() {
                 if (player.run) {
                     switch (player.side) {
                         case 1: // Right
-                            if (player.x < gameZone.getBoundingClientRect().right - player.w - 2) {
+                            if (player.x < gameZone.getBoundingClientRect().right - player.w - 10) {
                                 player.x += player.step;
                                 player.el.style.left = `${player.x}px`;
                             }
@@ -180,8 +180,8 @@ function startGame() {
         }, fps);
     
         ints.run = setInterval(() => {
-            let enemies = document.querySelectorAll('.coin');
-                enemies.forEach((coin) => {
+            let coins = document.querySelectorAll('.coin');
+                coins.forEach((coin) => {
                             if (coin.getBoundingClientRect().bottom >= gameZone.getBoundingClientRect().height - 100) {
                                 coin.parentNode.removeChild(coin);
                             } else {
